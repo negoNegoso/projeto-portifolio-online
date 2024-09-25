@@ -20,5 +20,5 @@ INSERT INTO users_authorities(user_id, authority_id) VALUE (4,4);
 
 INSERT INTO  teachers(first_name, last_name, middle_name,user_id) VALUE('Teacher','Professor','',2);
 
-INSERT INTO subjects(subject, classroom_id, teacher_id) VALUE (1,1,1);
-INSERT INTO subjects(subject, classroom_id, teacher_id) VALUE (2,1,1);
+-- INSERT INTO subjects(subject, classroom_id, teacher_id) VALUE (1,1,1);
+-- INSERT INTO subjects(subject, classroom_id, teacher_id) VALUE (2,1,1);
