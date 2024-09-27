@@ -1,4 +1,4 @@
-package com.fatec.siga.models.entity;
+package com.fatec.siga.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;

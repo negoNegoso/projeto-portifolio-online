@@ -1,4 +1,4 @@
-package com.fatec.siga.models.entity;
+package com.fatec.siga.model.entity;
 
 import com.fatec.siga.constants.enumeration.SubjectEnumeration;
 

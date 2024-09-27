@@ -1,6 +1,6 @@
-package com.fatec.siga.models;
+package com.fatec.siga.model;
 
-public abstract class BaseModel {
+public class BaseModel {
     private Long id;
 
     protected BaseModel() {
