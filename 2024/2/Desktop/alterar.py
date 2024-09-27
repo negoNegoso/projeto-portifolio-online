@@ -1,9 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter import messagebox  # Importa messagebox para exibir mensagens ao usuário
 from PIL import Image, ImageTk
 import os
-from disciplina_backend import editar_disciplina  # Importar a função de edição
+
 
 class ToplevelAlterar:
     def __init__(self, top=None, dados=None):
@@ -26,7 +25,6 @@ class ToplevelAlterar:
         top.configure(background="#d9d9d9")
 
         self.top = top
-        self.dados = dados  # Dados da disciplina a serem alterados
 
         # Adiciona um Canvas e desenha o gradiente de fundo
         self.canvas = tk.Canvas(self.top)
@@ -54,8 +52,13 @@ class ToplevelAlterar:
             label_img.place(relx=0.05, y=0.0, anchor=tk.N)  # Ajuste a posição da imagem
         except Exception as e:
             print(f"Erro ao carregar a imagem marca_page.png: {e}")
+            print(f"Tentando carregar imagem de: {marca_page_path}")
 
-        # Campos de entrada com os dados atuais
+        # Adicionando o botão Fechar
+        self.btn_fechar = tk.Button(self.top, text='Fechar', command=self.fechar)
+        self.btn_fechar.place(relx=0.02, rely=0.02, height=30, width=80)
+
+        # Campos de entrada
         self.label_disciplina = tk.Label(self.TFrame1, text='Disciplina:', font="Montserrat 8", bg="white", fg="#2C5FA3")
         self.label_disciplina.place(relx=0.121, rely=0.078, height=21, width=64)
         self.txt_disciplina = ttk.Entry(self.TFrame1)
@@ -92,6 +95,12 @@ class ToplevelAlterar:
         self.txt_ementa.place(relx=0.564, rely=0.287, height=210, relwidth=0.381)
         self.txt_ementa.insert(0, dados['ementa'])
 
+        self.label_professor = tk.Label(self.TFrame1, text='Professor:', font="Montserrat 8", bg="white", fg="#2C5FA3")
+        self.label_professor.place(relx=0.564, rely=0.078, height=21, width=85)
+        self.combobox_professores = ttk.Combobox(self.TFrame1)
+        self.combobox_professores.place(relx=0.564, rely=0.131, relheight=0.055, relwidth=0.3)
+        self.combobox_professores.set(dados['professor'])
+
         # Botão Alterar
         self.Button1 = tk.Button(self.TFrame1, text='Alterar', command=self.alterar_dados)
         self.Button1.place(relx=0.698, rely=0.888, height=26, width=77)
@@ -99,24 +108,8 @@ class ToplevelAlterar:
         self.divisoria = tk.Frame(self.TFrame1, bg="#2C5FA3")
         self.divisoria.place(relx=0.5, rely=0.5, relwidth=0.005, relheight=1, anchor=tk.CENTER)
 
-    def alterar_dados(self):
-        # Coleta os dados dos campos
-        id_disciplina = self.dados['id']  # A suposição é que o ID está nos dados
-        disciplina = self.txt_disciplina.get()
-        sigla = self.txt_sigla.get()
-        aulas_semanais = self.txt_aulas_semanais.get()
-        total_aulas = self.txt_total_aulas.get()
-        carga_horaria = self.txt_carga_horaria.get()
-        ementa = self.txt_ementa.get()
-
-        # Chama a função de editar no backend
-        resultado = editar_disciplina(id_disciplina, disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa)
-
-        # Exibe o resultado
-        messagebox.showinfo("Resultado", resultado)
-
-        # Fecha a janela após a alteração
-        self.top.destroy()
+        # Adicionando imagem logo (opcional)
+        self.add_small_image()
 
     def update_gradient(self, event=None):
         width = self.canvas.winfo_width()
@@ -124,9 +117,11 @@ class ToplevelAlterar:
         self.draw_gradient(width, height)
 
     def draw_gradient(self, width, height):
+        # Definindo as cores do gradiente
         start_color = "#26A7B9"
         end_color = "#331C8F"
 
+        # Criar o gradiente no Canvas
         gradient = tk.PhotoImage(width=width, height=height)
         for i in range(height):
             r1, g1, b1 = self.hex_to_rgb(start_color)
@@ -144,15 +139,70 @@ class ToplevelAlterar:
         self.draw_title("Editar Disciplina")
 
     def draw_title(self, titulo):
+        # Apaga o título anterior
         self.canvas.delete("titulo")
+        
         width = self.canvas.winfo_width()
         x_position = width / 2  
+        
+        # Desenha o título diretamente no Canvas com um tamanho menor
         self.canvas.create_text(x_position, 50, text=titulo, font=("Montserrat", 25, "bold"), fill="white", tags="titulo")
 
     def hex_to_rgb(self, hex_color):
+        # Converte uma cor hexadecimal em RGB
         hex_color = hex_color.lstrip('#')
         return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
 
+    def fechar(self):
+        # Fecha a janela atual
+        self.top.destroy()
+
+    def alterar_dados(self):
+        # Coleta os dados dos campos e imprime
+        disciplina = self.txt_disciplina.get()
+        sigla = self.txt_sigla.get()
+        aulas_semanais = self.txt_aulas_semanais.get()
+        total_aulas = self.txt_total_aulas.get()
+        carga_horaria = self.txt_carga_horaria.get()
+        ementa = self.txt_ementa.get()
+        professor = self.combobox_professores.get()
+
+        print(f"Disciplina: {disciplina}")
+        print(f"Sigla: {sigla}")
+        print(f"Aulas Semanais: {aulas_semanais}")
+        print(f"Total de Aulas: {total_aulas}")
+        print(f"Carga Horária: {carga_horaria}")
+        print(f"Ementa: {ementa}")
+        print(f"Professor: {professor}")
+
+        self.dados = {
+            "disciplina": disciplina,
+            "sigla": sigla,
+            "aulas_semanais": aulas_semanais,
+            "total_aulas": total_aulas,
+            "carga_horaria": carga_horaria,
+            "ementa": ementa,
+            "professor": professor
+        }
+
+        print(self.dados)
+
+    def add_small_image(self):
+        logo_path = os.path.join(os.path.dirname(__file__), 'imgs', 'logo.png')
+        try:
+            small_img = Image.open(logo_path)
+            small_img = small_img.resize((100, 50))  # Ajuste o tamanho se necessário
+            small_img_tk = ImageTk.PhotoImage(small_img)
+
+            # Adiciona a imagem ao frame inferior
+            label_logo = tk.Label(self.top, image=small_img_tk, bg="#312593")  # Fundo igual ao da janela
+            label_logo.image = small_img_tk  
+            label_logo.place(relx=0.48, rely=0.85, anchor=tk.N)  # Ajuste a posição da imagem
+        except Exception as e:
+            print(f"Erro ao carregar a imagem logo.png: {e}")
+            print(f"Tentando carregar imagem de: {logo_path}")
+
 if __name__ == "__main__":
     root = tk.Tk()
+    app = ToplevelAlterar(root, dados={'disciplina': '', 'sigla': '', 'aulas_semanais': '', 'total_aulas': '', 'carga_horaria': '', 'ementa': '', 'professor': ''})
     root.mainloop()
