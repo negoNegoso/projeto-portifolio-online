@@ -6,10 +6,12 @@ import com.fatec.siga.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Service
 public class SubjectServiceModel extends BaseModel{
 
     private SubjectEnum subject;

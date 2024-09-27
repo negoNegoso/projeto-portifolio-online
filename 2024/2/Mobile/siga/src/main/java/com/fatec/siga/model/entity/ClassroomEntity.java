@@ -4,25 +4,38 @@ import java.util.List;
 
 import com.fatec.siga.constants.enumeration.ClassroomEnumeration;
 
+import com.fatec.siga.constants.enumeration.ClassroomLetter;
+import com.fatec.siga.constants.enumeration.ClassroomNumber;
 import jakarta.persistence.*;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = "classrooms")
-// classe mapeamento de salas -> DSM
-public class ClassroomEntity extends BaseEntity{
+public class ClassroomEntity extends BaseEntity {
 
-    private ClassroomEnumeration classroom;
+    private ClassroomNumber number;
+    private ClassroomLetter letter;
     private List<SubjectEntity> subjects;
-    // private List<Students> students
+    private List<StudentEntity> students;
 
     @Enumerated(EnumType.ORDINAL)
-    public ClassroomEnumeration getClassroomEnumeration() {
-        return classroom;
+    public ClassroomNumber getNumber() {
+        return number;
     }
 
-    public ClassroomEntity setClassroomEnumeration(ClassroomEnumeration classroom) {
-        this.classroom = classroom;
+    public ClassroomEntity setNumber(ClassroomNumber number) {
+        this.number = number;
+        return this;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public ClassroomLetter getLetter() {
+        return letter;
+    }
+
+    public ClassroomEntity setLetter(ClassroomLetter letter) {
+        this.letter = letter;
         return this;
     }
 
@@ -33,5 +46,15 @@ public class ClassroomEntity extends BaseEntity{
 
     public void setSubjects(List<SubjectEntity> subjects) {
         this.subjects = subjects;
+    }
+
+    @OneToMany(mappedBy = "classroom")
+    public List<StudentEntity> getStudents() {
+        return students;
+    }
+
+    public ClassroomEntity setStudents(List<StudentEntity> students) {
+        this.students = students;
+        return this;
     }
 }
