@@ -1,10 +1,10 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter import messagebox  # Importa messagebox para exibir mensagens ao usuário
 from PIL import Image, ImageTk
 import os
 from alterar import ToplevelAlterar
-from disciplina_backend import cadastrar_disciplina
+from disciplinas_backend import list_professores
+from disciplinas_backend import create_disciplina
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -92,6 +92,17 @@ class Toplevel1:
         self.txt_ementa = tk.Entry(self.TFrame1)
         self.txt_ementa.place(relx=0.564, rely=0.287, height=210, relwidth=0.381)
 
+        # Lista de professores
+        self.label_professor = tk.Label(self.TFrame1, text='Professor:', font="Montserrat 8", bg="white", fg="#2C5FA3")
+        self.label_professor.place(relx=0.564, rely=0.078, height=21, width=85)
+
+        self.combobox_professores = ttk.Combobox(self.TFrame1)
+        self.combobox_professores.place(relx=0.564, rely=0.131, relheight=0.055, relwidth=0.3)
+
+        # Preencher Combobox com professores
+        professores = list_professores()
+        self.combobox_professores['values'] = [f"{prof[0]} - {prof[1]}" for prof in professores]
+
         # Botão Cadastrar
         self.Button1 = tk.Button(self.TFrame1, text='Cadastrar', command=self.salvar_dados)
         self.Button1.place(relx=0.698, rely=0.888, height=26, width=77)
@@ -103,7 +114,7 @@ class Toplevel1:
         # Divisória mais fina
         self.divisoria = tk.Frame(self.TFrame1, bg="#2C5FA3")
         self.divisoria.place(relx=0.5, rely=0.5, relwidth=0.005, relheight=1, anchor=tk.CENTER)
-
+    
     def update_gradient(self, event=None):
         width = self.canvas.winfo_width()
         height = self.canvas.winfo_height()
@@ -153,43 +164,29 @@ class Toplevel1:
             label_logo.place(relx=0.48, rely=0.85, anchor=tk.N)  # Ajuste a posição da imagem
         except Exception as e:
             print(f"Erro ao carregar a imagem logo.png: {e}")
+            print(f"Tentando carregar imagem de: {logo_path}")
 
+    def hex_to_rgb(self, hex_color):
+        # Converte uma cor hexadecimal em RGB
+        hex_color = hex_color.lstrip('#')
+        return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    
     def salvar_dados(self):
+        # Coleta os dados dos campos e salva
         disciplina = self.txt_disciplina.get()
         sigla = self.txt_sigla.get()
         aulas_semanais = self.txt_aulas_semanais.get()
         total_aulas = self.txt_total_aulas.get()
         carga_horaria = self.txt_carga_horaria.get()
         ementa = self.txt_ementa.get()
+        professor = self.combobox_professores.get()
 
-        # Verifica se todos os campos estão preenchidos
-        if not all([disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa]):
-            messagebox.showerror("Erro", "Por favor, preencha todos os campos!")
-            return
-
-        # Chama a função para cadastrar a disciplina e obtém o resultado
-        resultado = cadastrar_disciplina(disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa)
-
-        # Exibe o resultado para o usuário
-        messagebox.showinfo("Resultado", resultado)
-
-        # Limpa os campos após o cadastro
-        self.txt_disciplina.delete(0, tk.END)
-        self.txt_sigla.delete(0, tk.END)
-        self.txt_aulas_semanais.delete(0, tk.END)
-        self.txt_total_aulas.delete(0, tk.END)
-        self.txt_carga_horaria.delete(0, tk.END)
-        self.txt_ementa.delete(0, tk.END)
+        # Chama a função de criação de disciplina
+        create_disciplina(disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa, professor)
 
     def abrir_alterar_tela(self):
-        alterar_window = tk.Toplevel(self.top)
-        ToplevelAlterar(alterar_window)
-
-    @staticmethod
-    def hex_to_rgb(value):
-        # Converter uma cor hexadecimal para uma tupla RGB
-        value = value.lstrip("#")
-        return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
+        # Abre a tela de alteração de disciplina
+        self.alterar_toplevel = ToplevelAlterar(self.top)
 
 if __name__ == "__main__":
     root = tk.Tk()
