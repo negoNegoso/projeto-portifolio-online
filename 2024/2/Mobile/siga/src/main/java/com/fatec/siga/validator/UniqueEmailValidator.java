@@ -3,10 +3,8 @@ package com.fatec.siga.validator;
 import com.fatec.siga.anotation.UniqueEmail;
 import com.fatec.siga.repository.UserRepository;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-import org.hibernate.mapping.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail,String> {

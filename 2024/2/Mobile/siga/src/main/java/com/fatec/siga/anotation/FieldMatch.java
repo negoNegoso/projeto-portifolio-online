@@ -1,9 +1,12 @@
 package com.fatec.siga.anotation;
 
-import java.lang.annotation.Documented;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+
+import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = FieldMatchValidator.class)
+//@Constraint(validatedBy = FieldMatchValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface FieldMatch{

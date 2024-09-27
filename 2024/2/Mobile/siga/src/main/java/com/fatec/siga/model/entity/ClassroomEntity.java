@@ -3,7 +3,6 @@ package com.fatec.siga.model.entity;
 import java.util.List;
 
 import com.fatec.siga.constants.enumeration.ClassroomEnumeration;
-import com.fatec.siga.constants.enumuration.ClassroomLetter;
 
 import jakarta.persistence.*;
 

@@ -1,7 +1,9 @@
 package com.fatec.siga.model.service;
 
 
-public class UserServiceModel extends BaseModel{
+import com.fatec.siga.model.BaseModel;
+
+public class UserServiceModel extends BaseModel {
 
     private String email;
     

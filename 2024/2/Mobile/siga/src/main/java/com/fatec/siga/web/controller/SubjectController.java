@@ -1,19 +1,16 @@
 package com.fatec.siga.web.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
+import com.fatec.siga.model.service.SubjectServiceModel;
+import com.fatec.siga.model.view.SubjectBindingModel;
+import com.fatec.siga.model.view.SubjectViewModel;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.web.bind.annotation.*;
 import com.fatec.siga.anotation.PageTitle;
 import com.fatec.siga.service.ClassroomService;
 import com.fatec.siga.service.SubjectService;
@@ -21,22 +18,25 @@ import com.fatec.siga.service.TeacherService;
 import com.fatec.siga.service.UserService;
 
 
-
-@Controller
+@RestController
 @RequestMapping("/subjects")
 public class SubjectController extends BaseController {
-    
+
     @Autowired
     private SubjectService subjectService;
-    private final ClassroomService classroomService;
-    private final UserService userService;
-    private final TeacherService teacherService;
+    @Autowired
+    private ClassroomService classroomService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TeacherService teacherService;
 
     @Autowired
     public SubjectController(ModelMapper modelMapper,
                              SubjectService subjectService,
                              ClassroomService classroomService,
-                             UserService userService, TeacherService teacherService) {
+                             UserService userService,
+                             TeacherService teacherService) {
         super(modelMapper);
         this.subjectService = subjectService;
         this.classroomService = classroomService;
@@ -44,67 +44,57 @@ public class SubjectController extends BaseController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping("/all//{classroomId}")
-    @PageTitle(value = "Subjects")
-    public String subjects(@PathVariable Long classroomId, Model model) {
-        model.addAttribute("classroom",classroomService.getById(classroomId));
-        model.addAttribute("subjects",getSubjects(classroomId));
-        return "subjects-all";
+
+    @GetMapping("/all/{classroomId}")
+    public ResponseEntity<List<SubjectViewModel>> getAllSubjects(@PathVariable Long classroomId) {
+        List<SubjectViewModel> subjects = getSubjects(classroomId);
+        return ResponseEntity.ok(subjects);
     }
 
     @GetMapping("/add/{classroomId}")
-    @PageTitle(value = "Add an item")
-    public String addSubjectGet(@PathVariable Long classroomId,Model model){
-        model.addAttribute("teachers",teacherService.getAllTeachers());
-        model.addAttribute("classroom",classroomService.getById(classroomId));
-        if (model.getAttribute(BINDING_MODEL) == null) {
-            model.addAttribute(BINDING_MODEL, new SubjectBindingModel());
-        }
-        return "subjects-add";
+    public ResponseEntity<Map<String, Object>> getAddSubjectInfo(@PathVariable Long classroomId) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("teachers", teacherService.getAllTeachers());
+        response.put("classroom", classroomService.getById(classroomId));
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/add")
-    public String add(SubjectBindingModel subjectBindingModel, RedirectAttributes redirectAttributes) {
-        if (subjectService.subjectExists(subjectBindingModel.getSubject(),subjectBindingModel.getClassroomId())){
-            redirectAttributes.addFlashAttribute(ERROR,"The item exists");
-            return redirect("/subjects/add/" + subjectBindingModel.getClassroomId());
+    public ResponseEntity<String> add(@RequestBody SubjectBindingModel subjectBindingModel) {
+        if (subjectService.subjectExists(subjectBindingModel.getSubject(), subjectBindingModel.getClassroomId())){
+            return ResponseEntity.badRequest().body("The subject already exists.");
         }
         SubjectServiceModel serviceModel = modelMapper.map(subjectBindingModel, SubjectServiceModel.class);
         subjectService.addSubject(serviceModel);
-        return redirect("/subjects/all/" + subjectBindingModel.getClassroomId());
+        return ResponseEntity.ok("Subject added successfully.");
     }
 
     @GetMapping("/edit/{id}")
     @PageTitle(value = "Edit item")
-    public String editSubjectGet(@PathVariable Long id,Model model){
+    public ResponseEntity<SubjectBindingModel> editSubjectGet(@PathVariable Long id){
         SubjectServiceModel serviceModel = subjectService.getSubjectById(id);
         SubjectBindingModel bindingModel = modelMapper.map(serviceModel, SubjectBindingModel.class);
-        model.addAttribute("teachers",teacherService.getAllTeachers());
-        if (model.getAttribute(BINDING_MODEL) == null){
-            model.addAttribute(BINDING_MODEL,bindingModel);
-        }
-        return "subjects-edit";
+        return ResponseEntity.ok(bindingModel);
     }
 
     @GetMapping("/details/{subjectId}")
     // @PreAuthorize("hasAnyAuthority('ADMIN','TEACHER')")
-    public String details(@PathVariable Long subjectId,Model model){
+    public ResponseEntity<SubjectServiceModel> details(@PathVariable Long subjectId){
         SubjectServiceModel subject = subjectService.getSubjectById(subjectId);
-        model.addAttribute("subject",subject);
-        return "subjects-details";
+        return ResponseEntity.ok(subject);
     }
 
     @PutMapping("/edit")
-    public String editSubjectPut(SubjectBindingModel bindingModel){
+    public ResponseEntity<String> editSubjectPut(@RequestBody SubjectBindingModel bindingModel){
         SubjectServiceModel serviceModel = modelMapper.map(bindingModel, SubjectServiceModel.class);
         subjectService.editSubject(serviceModel);
-        return redirect("/subjects/all/" + bindingModel.getId());
+        return ResponseEntity.ok("Subject edited successfully.");
     }
 
     @DeleteMapping("/delete")
-    public String delete(Long id,Long classroomId){
+    public ResponseEntity<String> delete(@RequestParam Long id, @RequestParam Long classroomId){
         subjectService.deleteSubject(id);
-        return redirect("/subjects/all/" + classroomId);
+        return ResponseEntity.ok("Subject deleted successfully.");
     }
 
 

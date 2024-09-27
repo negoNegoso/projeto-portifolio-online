@@ -1,9 +1,9 @@
 package com.fatec.siga.anotation;
 import com.fatec.siga.validator.UniqueEmailValidator;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
 
 
