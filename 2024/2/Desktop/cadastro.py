@@ -8,11 +8,11 @@ from disciplinas_backend import create_disciplina
 
 class Toplevel1:
     def __init__(self, top=None):
-        # Definir o tamanho da janela
+        # Define o tamanho da janela
         window_width = 1231
         window_height = 659
 
-        # Calcular as coordenadas para centralizar a janela
+        #centralizar a janela
         screen_width = top.winfo_screenwidth()
         screen_height = top.winfo_screenheight()
         x = (screen_width - window_width) // 2
@@ -51,15 +51,22 @@ class Toplevel1:
         marca_page_path = os.path.join(os.path.dirname(__file__), 'imgs', 'marca_page.png')
         try:
             img_marca_page = Image.open(marca_page_path)
-            img_marca_page = img_marca_page.resize((30, 100))  # Ajuste o tamanho se necessário
+            img_marca_page = img_marca_page.resize((30, 100)) 
             img_marca_page_tk = ImageTk.PhotoImage(img_marca_page)
 
             label_img = tk.Label(self.TFrame1, image=img_marca_page_tk, bg="white")
-            label_img.image = img_marca_page_tk  # Mantém referência para evitar garbage collection
-            label_img.place(relx=0.05, y=0.0, anchor=tk.N)  # Ajuste a posição da imagem
+            label_img.image = img_marca_page_tk  
+            label_img.place(relx=0.05, y=0.0, anchor=tk.N)  
         except Exception as e:
             print(f"Erro ao carregar a imagem marca_page.png: {e}")
             print(f"Tentando carregar imagem de: {marca_page_path}")
+            
+        #Funão para verificar se os caracteres são numeros
+        def validate_number(P):
+            if P.isdigit() or P == '':
+                return True
+            else:
+                return False
 
         # Campos de entrada
         self.label_disciplina = tk.Label(self.TFrame1, text='Disciplina:', font="Montserrat 8", bg="white", fg="#2C5FA3")
@@ -73,23 +80,23 @@ class Toplevel1:
         self.txt_sigla.place(relx=0.121, rely=0.287, relheight=0.055, relwidth=0.3)
 
         self.label_aulas_semanais = tk.Label(self.TFrame1, text='Aulas Semanais:', font="Montserrat 8", bg="white", fg="#2C5FA3")
-        self.label_aulas_semanais.place(relx=0.121, rely=0.392)
-        self.txt_aulas_semanais = ttk.Entry(self.TFrame1)
-        self.txt_aulas_semanais.place(relx=0.121, rely=0.444, relheight=0.055, relwidth=0.3)
-
+        self.label_aulas_semanais.place(relx=0.121, rely=0.405, height=21, width=85)
+        self.txt_aulas_semanais= ttk.Entry(self.TFrame1, validate="key", validatecommand=(root.register(validate_number), '%P'))
+        self.txt_aulas_semanais.place(relx=0.121, rely=0.457, relheight=0.055, relwidth=0.3)
+        
         self.label_total_aulas = tk.Label(self.TFrame1, text='Total de Aulas(Semestre):', font="Montserrat 8", bg="white", fg="#2C5FA3")
-        self.label_total_aulas.place(relx=0.121, rely=0.548, height=21, width=135)
-        self.txt_total_aulas = ttk.Entry(self.TFrame1)
+        self.label_total_aulas.place(relx=0.121, rely=0.535, height=21, width=135)
+        self.txt_total_aulas = ttk.Entry(self.TFrame1, validate="key", validatecommand=(root.register(validate_number), '%P'))
         self.txt_total_aulas.place(relx=0.121, rely=0.601, relheight=0.055, relwidth=0.3)
 
         self.label_carga_horaria = tk.Label(self.TFrame1, text='Carga Horária:', font="Montserrat 8", bg="white", fg="#2C5FA3")
         self.label_carga_horaria.place(relx=0.121, rely=0.705, height=21, width=85)
-        self.txt_carga_horaria = ttk.Entry(self.TFrame1)
+        self.txt_carga_horaria = ttk.Entry(self.TFrame1, validate="key", validatecommand=(root.register(validate_number), '%P'))
         self.txt_carga_horaria.place(relx=0.121, rely=0.757, relheight=0.055, relwidth=0.3)
 
         self.label_ementa = tk.Label(self.TFrame1, text='Ementa:', font="Montserrat 8", bg="white", fg="#2C5FA3")
         self.label_ementa.place(relx=0.564, rely=0.235, height=21, width=55)
-        self.txt_ementa = tk.Entry(self.TFrame1)
+        self.txt_ementa = tk.Text(self.TFrame1)
         self.txt_ementa.place(relx=0.564, rely=0.287, height=210, relwidth=0.381)
 
         # Lista de professores
@@ -156,12 +163,12 @@ class Toplevel1:
         logo_path = os.path.join(os.path.dirname(__file__), 'imgs', 'logo.png')
         try:
             small_img = Image.open(logo_path)
-            small_img = small_img.resize((100, 50))  # Ajuste o tamanho se necessário
+            small_img = small_img.resize((100, 50))  
             small_img_tk = ImageTk.PhotoImage(small_img)
             # Adiciona a imagem ao frame inferior
-            label_logo = tk.Label(self.top, image=small_img_tk, bg="#312593")  # Fundo igual ao da janela
+            label_logo = tk.Label(self.top, image=small_img_tk, bg="#312593")  
             label_logo.image = small_img_tk  
-            label_logo.place(relx=0.48, rely=0.85, anchor=tk.N)  # Ajuste a posição da imagem
+            label_logo.place(relx=0.48, rely=0.85, anchor=tk.N)  
         except Exception as e:
             print(f"Erro ao carregar a imagem logo.png: {e}")
             print(f"Tentando carregar imagem de: {logo_path}")
@@ -181,7 +188,7 @@ class Toplevel1:
         ementa = self.txt_ementa.get()
         professor = self.combobox_professores.get()
 
-        # Chama a função de criação de disciplina
+        # função de criação de disciplina
         create_disciplina(disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa, professor)
 
     def abrir_alterar_tela(self):
@@ -192,3 +199,5 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Toplevel1(root)
     root.mainloop()
+
+    
