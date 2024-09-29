@@ -36,6 +36,7 @@ def atualizar_mensagem(canvas, msg):
     
 # Função para carregar e redimensionar imagem
 def carregar_imagem(caminho, largura, altura):
+    caminho = os.path.join(os.path.dirname(__file__), caminho)
     imagem = Image.open(caminho)
     imagem_redimensionada = imagem.resize((largura, altura), Image.LANCZOS)
     return ImageTk.PhotoImage(imagem_redimensionada)
