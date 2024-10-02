@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Alunos = sequelize.define(
+const Students = sequelize.define(
   'Alunos',
   {
     id_aluno: {
@@ -53,4 +53,4 @@ const Alunos = sequelize.define(
   }
 );
 
-export default Alunos;
+export default Students;

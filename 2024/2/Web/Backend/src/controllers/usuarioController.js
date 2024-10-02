@@ -1,21 +1,21 @@
-import Usuarios from '../models/usuarios.js';
+import Users from '../models/usuarios.js';
 import bcrypt from 'bcrypt';
 import { login } from '../services/authService.js';
 
-const getUsuarios = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    const usuarios = await Usuarios.findAll();
-    res.status(200).json(usuarios);
+    const users = await Users.findAll();
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const createUsuario = async (req, res) => {
+const createUser = async (req, res) => {
   const { nome_completo, email, senha, tipo_usuario } = req.body;
 
   try {
-    const existingUser = await Usuarios.findOne({ where: { email } });
+    const existingUser = await Users.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'email já cadastrado.' });
     }
@@ -23,7 +23,7 @@ const createUsuario = async (req, res) => {
     const hashedPassword = await bcrypt.hash(senha, 10);
     const currentTime = new Date().toTimeString().split(' ')[0];
 
-    const usuario = await Usuarios.create({
+    const user = await Users.create({
       nome_completo,
       email,
       senha: hashedPassword,
@@ -31,33 +31,33 @@ const createUsuario = async (req, res) => {
       data_criacao: currentTime,
       status: 'ativo',
     });
-    res.status(201).json(usuario);
+    res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const getUsuarioById = async (req, res) => {
+const getUserById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const usuario = await Usuarios.findByPk(id);
-    if (!usuario) {
+    const user = await Users.findByPk(id);
+    if (!user) {
       return res.status(404).json({ message: 'usuário não encontrado.' });
     }
-    res.status(200).json(usuario);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const updateUsuario = async (req, res) => {
+const updateUser = async (req, res) => {
   const { id } = req.params;
   const { nome_completo, email, senha, tipo_usuario, status } = req.body;
 
   try {
-    const usuario = await Usuarios.findByPk(id);
-    if (!usuario) {
+    const user = await Users.findByPk(id);
+    if (!user) {
       return res.status(404).json({ message: 'usuário não encontrado.' });
     }
 
@@ -72,17 +72,17 @@ const updateUsuario = async (req, res) => {
       updateData.senha = await bcrypt.hash(senha, 10);
     }
 
-    await Usuarios.update(updateData, { where: { id_usuario: id } });
+    await Users.update(updateData, { where: { id_usuario: id } });
     res.json({ message: 'usuário atualizado com sucesso.' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const deleteUsuario = async (req, res) => {
+const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const deleted = await Usuarios.destroy({ where: { id_usuario: id } });
+    const deleted = await Users.destroy({ where: { id_usuario: id } });
     if (!deleted) {
       return res.status(404).json({ message: 'usuário não encontrado' });
     }
@@ -92,15 +92,15 @@ const deleteUsuario = async (req, res) => {
   }
 };
 
-const loginUsuario = async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const { usuario, token } = await login(email, senha);
-    res.status(200).json({ usuario, token });
+    const { user, token } = await login(email, senha);
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(401).json({ error: error.message });
   }
 };
 
-export { getUsuarios, createUsuario, getUsuarioById, updateUsuario, deleteUsuario, loginUsuario };
+export { getUsers, createUser, getUserById, updateUser, deleteUser, loginUser };

@@ -1,56 +1,56 @@
-import Alunos from '../models/alunos.js';
+import Students from '../models/alunos.js';
 
-const getAlunos = async (req, res) => {
+const getStudents = async (req, res) => {
   try {
-    const alunos = await Alunos.findAll();
-    res.status(200).json(alunos);
+    const students = await Students.findAll();
+    res.status(200).json(students);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const createAluno = async (req, res) => {
+const createStudent = async (req, res) => {
   try {
-    const aluno = await Alunos.create(req.body);
-    res.status(201).json(aluno);
+    const student = await Students.create(req.body);
+    res.status(201).json(student);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const getAlunoById = async (req, res) => {
+const getStudentById = async (req, res) => {
   const { id } = req.params;
   try {
-    const aluno = await Alunos.findByPk(id);
-    if (!aluno) {
-      return res.status(404).json({ message: 'aluno não encontrado.' });
+    const student = await Students.findByPk(id);
+    if (!student) {
+      return res.status(404).json({ message: 'Aluno não encontrado.' });
     }
-    res.status(200).json(aluno);
+    res.status(200).json(student);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const updateAluno = async (req, res) => {
+const updateStudent = async (req, res) => {
   const { id } = req.params;
   try {
-    const [updated] = await Alunos.update(req.body, { where: { id_aluno: id } });
+    const [updated] = await Students.update(req.body, { where: { id_aluno: id } });
     if (!updated) {
-      return res.status(404).json({ message: 'aluno não encontrado.' });
+      return res.status(404).json({ message: 'Aluno não encontrado.' });
     }
-    const updatedAluno = await Alunos.findByPk(id);
-    res.json(updatedAluno);
+    const updatedStudent = await Students.findByPk(id);
+    res.json(updatedStudent);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const deleteAluno = async (req, res) => {
+const deleteStudent = async (req, res) => {
   const { id } = req.params;
   try {
-    const deleted = await Alunos.destroy({ where: { id_aluno: id } });
+    const deleted = await Students.destroy({ where: { id_aluno: id } });
     if (!deleted) {
-      return res.status(404).json({ message: 'aluno não encontrado.' });
+      return res.status(404).json({ message: 'Aluno não encontrado.' });
     }
     res.status(204).send();
   } catch (error) {
@@ -58,4 +58,4 @@ const deleteAluno = async (req, res) => {
   }
 };
 
-export { getAlunos, createAluno, getAlunoById, updateAluno, deleteAluno };
+export { getStudents, createStudent, getStudentById, updateStudent, deleteStudent };
