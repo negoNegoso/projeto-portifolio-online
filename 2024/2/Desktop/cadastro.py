@@ -1,10 +1,13 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from PIL import Image, ImageTk
+from tkinter import messagebox
 import os
 from alterar import ToplevelAlterar
-from disciplinas_backend import list_professores
-from disciplinas_backend import create_disciplina
+# from disciplinas_backend import list_turma
+# from disciplinas_backend import list_curso       ###comentado a parte do backend para funcionamento somente do front 
+# from disciplinas_backend import create_disciplina
+
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -95,30 +98,41 @@ class Toplevel1:
         self.txt_carga_horaria.place(relx=0.121, rely=0.757, relheight=0.055, relwidth=0.3)
 
         self.label_ementa = tk.Label(self.TFrame1, text='Ementa:', font="Montserrat 8", bg="white", fg="#2C5FA3")
-        self.label_ementa.place(relx=0.564, rely=0.235, height=21, width=55)
+        self.label_ementa.place(relx=0.564, rely=0.350, height=21, width=55)
         self.txt_ementa = tk.Text(self.TFrame1)
-        self.txt_ementa.place(relx=0.564, rely=0.287, height=210, relwidth=0.381)
+        self.txt_ementa.place(relx=0.564, rely=0.420, height=140, relwidth=0.381)
 
-        # Lista de professores
-        self.label_professor = tk.Label(self.TFrame1, text='Professor:', font="Montserrat 8", bg="white", fg="#2C5FA3")
-        self.label_professor.place(relx=0.564, rely=0.078, height=21, width=85)
+        # Lista de turma
+        self.label_turmaid = tk.Label(self.TFrame1, text='Turma ID:', font="Montserrat 8", bg="white", fg="#2C5FA3")
+        self.label_turmaid.place(relx=0.564, rely=0.078, height=21, width=60)
 
-        self.combobox_professores = ttk.Combobox(self.TFrame1)
-        self.combobox_professores.place(relx=0.564, rely=0.131, relheight=0.055, relwidth=0.3)
+        self.combobox_turmaid = ttk.Combobox(self.TFrame1, validate="key", validatecommand=(root.register(validate_number), '%P'))
+        self.combobox_turmaid.place(relx=0.564, rely=0.131, relheight=0.055, relwidth=0.1)
+        
+        #Lista curso
+        self.label_cursoid = tk.Label(self.TFrame1, text='Curso ID:', font="Montserrat 8", bg="white", fg="#2C5FA3")
+        self.label_cursoid.place(relx=0.564, rely=0.185, height=21, width=60)
 
-        # Preencher Combobox com professores
-        professores = list_professores()
-        self.combobox_professores['values'] = [f"{prof[0]} - {prof[1]}" for prof in professores]
+        self.combobox_cursoid = ttk.Combobox(self.TFrame1, validate="key", validatecommand=(root.register(validate_number), '%P'))
+        self.combobox_cursoid.place(relx=0.564, rely=0.251, relheight=0.055, relwidth=0.1)
 
+        # Preencher Combobox com Turmas ids
+        # turma = list_turma() ----- parte do backend
+        # self.combobox_turmaid['values'] = [f"{turm[0]} - {turm[1]}" for turm in turma]
+        
+        # # Preencher Combobox com Turmas ids
+        # curso = list_curso() ----- parte do backend
+        # self.combobox_cursoid['values'] = [f"{curs[0]} - {curs[1]}" for curs in curso]
+        
         # Botão Cadastrar
         self.Button1 = tk.Button(self.TFrame1, text='Cadastrar', command=self.salvar_dados)
         self.Button1.place(relx=0.698, rely=0.888, height=26, width=77)
 
-        # Botão para abrir a tela de alteração
-        self.Button2 = tk.Button(self.top, text='Editar Disciplina', command=self.abrir_alterar_tela)
-        self.Button2.place(relx=0.1, rely=0.9, anchor=tk.N, height=26, width=150)
+        # Botão para abrir a tela de alteração  ----- comentado pois a tela de editar não vai vir de cadastro
+        # self.Button2 = tk.Button(self.top, text='Editar Disciplina', command=self.abrir_alterar_tela)
+        # self.Button2.place(relx=0.1, rely=0.9, anchor=tk.N, height=26, width=150)
 
-        # Divisória mais fina
+        # Divisória fina
         self.divisoria = tk.Frame(self.TFrame1, bg="#2C5FA3")
         self.divisoria.place(relx=0.5, rely=0.5, relwidth=0.005, relheight=1, anchor=tk.CENTER)
     
@@ -178,19 +192,64 @@ class Toplevel1:
         hex_color = hex_color.lstrip('#')
         return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
     
+    def verificar_campos_vazios(self):
+        # Verifica se os campos estão vazios
+            if not self.txt_disciplina.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Disciplina' não pode estar vazio.")
+                return False
+            if not self.txt_sigla.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Sigla' não pode estar vazio.")
+                return False
+            if not self.txt_aulas_semanais.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Aulas Semanais' não pode estar vazio.")
+                return False
+            if not self.txt_total_aulas.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Total de Aulas' não pode estar vazio.")
+                return False
+            if not self.txt_carga_horaria.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Carga Horária' não pode estar vazio.")
+                return False
+            if not self.txt_ementa.get('1.0', 'end').strip():
+                messagebox.showwarning("Campo Vazio", "O campo 'Ementa' não pode estar vazio.")
+                return False
+            if not self.combobox_cursoid.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Curso ID' não pode estar vazio.")
+                return False
+            if not self.combobox_turmaid.get():
+                messagebox.showwarning("Campo Vazio", "O campo 'Turma ID' não pode estar vazio.")
+                return False
+            return True
+    
     def salvar_dados(self):
+        if not self.verificar_campos_vazios():
+            return
+    
         # Coleta os dados dos campos e salva
         disciplina = self.txt_disciplina.get()
         sigla = self.txt_sigla.get()
         aulas_semanais = self.txt_aulas_semanais.get()
         total_aulas = self.txt_total_aulas.get()
         carga_horaria = self.txt_carga_horaria.get()
-        ementa = self.txt_ementa.get()
-        professor = self.combobox_professores.get()
+        ementa = self.txt_ementa.get('1.0', 'end')
+        turma = self.combobox_turmaid.get()
+        curso = self.combobox_cursoid.get()
 
         # função de criação de disciplina
-        create_disciplina(disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa, professor)
-
+        # create_disciplina(disciplina, sigla, aulas_semanais, total_aulas, carga_horaria, ementa, turma, curso) ---- comentando pois esa função vem do back
+        
+        messagebox.showinfo("Sucesso", "Disciplina cadastrada com sucesso!")
+        self.limpar_campos()
+        
+    def limpar_campos(self):
+        self.txt_disciplina.delete(0, tk.END)
+        self.txt_sigla.delete(0, tk.END)
+        self.txt_aulas_semanais.delete(0, tk.END)
+        self.txt_total_aulas.delete(0, tk.END)
+        self.txt_carga_horaria.delete(0, tk.END)
+        self.txt_ementa.delete("1.0", tk.END)
+        self.combobox_turmaid.set("")
+        self.combobox_cursoid.set("")
+        
     def abrir_alterar_tela(self):
         # Abre a tela de alteração de disciplina
         self.alterar_toplevel = ToplevelAlterar(self.top)
