@@ -9,6 +9,7 @@ import Turmas from './models/turmas.js';
 import Usuarios from './models/usuarios.js';
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
+import subjectRoutes from './routes/subjectRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.use('/subjects', subjectRoutes);
 app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
 
