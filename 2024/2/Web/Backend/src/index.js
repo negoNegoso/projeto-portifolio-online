@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { Alunos, Cursos, Permissoes, Roles, Turmas, Usuarios } from './models'
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
+import turmaRoutes from './routes/turmaRoutes.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
+app.use('/', turmaRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
