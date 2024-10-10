@@ -1,20 +1,28 @@
-const express = require('express');
+import express from 'express';
+
+import {
+  createSubject,
+  getAllSubjects,
+  getSubjectById,
+  updateSubject,
+  deleteSubject,
+} from '../controllers/subjectController.js';
+
 const router = express.Router();
-const subjectController = require('../controllers/subjectController');
 
 // Criar uma nova matéria
-router.post('/', subjectController.createSubject);
+router.post('/', createSubject);
 
 // Route para listar materias
-router.get('/', subjectController.getAllSubjects);
+router.get('/', getAllSubjects);
 
 // Route para pegar materia pelo id
-router.get('/:id', subjectController.getSubjectById);
+router.get('/:id', getSubjectById);
 
 // Route para atualizar materia
-router.put('/:id', subjectController.updateSubject);
+router.put('/:id', updateSubject);
 
 // Route para apagar a materia
-router.delete('/:id', subjectController.deleteSubject);
+router.delete('/:id', deleteSubject);
 
-module.exports = router;
+export default router;
