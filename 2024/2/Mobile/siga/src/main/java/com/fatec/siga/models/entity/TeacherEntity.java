@@ -10,7 +10,7 @@ public class TeacherEntity extends BaseEntity{
     private String firstName;
     private String middleName;
     private String lastName;
-    private UserEntity user;
+    private User user;
     private List<SubjectEntity> subjects;
 
     public TeacherEntity() {
@@ -44,11 +44,11 @@ public class TeacherEntity extends BaseEntity{
     }
 
     @ManyToOne
-    public UserEntity getUser() {
+    public User getUser() {
         return user;
     }
 
-    public TeacherEntity setUser(UserEntity user) {
+    public TeacherEntity setUser(User user) {
         this.user = user;
         return this;
     }
