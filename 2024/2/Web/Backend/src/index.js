@@ -7,9 +7,12 @@ import Permissoes from './models/Permissoes.js';
 import Roles from './models/Roles.js';
 import Turmas from './models/Turmas.js';
 import Usuarios from './models/Usuarios.js';
+import Subject from './models/Subject.js';
+import RollCall from './models/RollCall.js';
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import subjectRoutes from './routes/subjectRoutes.js';
+import rollCallRoutes from './routes/rollCallRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +24,7 @@ app.use(express.json());
 app.use('/subjects', subjectRoutes);
 app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
+app.use('/', rollCallRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
