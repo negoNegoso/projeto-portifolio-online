@@ -21,10 +21,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use('/subjects', subjectRoutes);
-app.use('/', alunosRoutes);
-app.use('/', usuariosRoutes);
-app.use('/', rollCallRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/students', alunosRoutes);
+app.use('/api/users', usuariosRoutes);
+app.use('/api/rollcalls', rollCallRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');

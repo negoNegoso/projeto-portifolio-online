@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get('/rollcall', getRollCall);
-router.post('/rollcall', createRollCall);
-router.get('/rollcalls/:id', getRollCallById);
-router.put('/rollcalls/:id', updateRollCall);
-router.delete('/rollcalls/:id', deleteRollCall);
+router.get('/', getRollCall);
+router.post('/', createRollCall);
+router.get('/:id', getRollCallById);
+router.put('/:id', updateRollCall);
+router.delete('/:id', deleteRollCall);
 
 export default router;

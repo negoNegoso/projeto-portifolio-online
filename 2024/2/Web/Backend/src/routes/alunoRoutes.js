@@ -10,10 +10,10 @@ import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/alunos', verifyToken, getStudents);
-router.post('/alunos', createStudent);
-router.get('/alunos/:id', getStudentById);
-router.put('/alunos/:id', updateStudent);
-router.delete('/alunos/:id', deleteStudent);
+router.get('/', verifyToken, getStudents);
+router.post('/', createStudent);
+router.get('/:id', getStudentById);
+router.put('/:id', updateStudent);
+router.delete('/:id', deleteStudent);
 
 export default router;
