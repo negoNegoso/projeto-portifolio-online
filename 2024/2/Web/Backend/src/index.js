@@ -1,15 +1,18 @@
 import express from 'express';
 import sequelize from './config/database.js';
 import dotenv from 'dotenv';
-import Alunos from './models/alunos.js';
-import Cursos from './models/cursos.js';
-import Permissoes from './models/permissoes.js';
-import Roles from './models/roles.js';
-import Turmas from './models/turmas.js';
-import Usuarios from './models/usuarios.js';
+import Alunos from './models/Alunos.js';
+import Cursos from './models/Cursos.js';
+import Permissoes from './models/Permissoes.js';
+import Roles from './models/Roles.js';
+import Turmas from './models/Turmas.js';
+import Usuarios from './models/Usuarios.js';
+import Subject from './models/Subject.js';
+import RollCall from './models/RollCall.js';
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import subjectRoutes from './routes/subjectRoutes.js';
+import rollCallRoutes from './routes/rollCallRoutes.js';
 
 dotenv.config();
 
@@ -18,9 +21,10 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use('/subjects', subjectRoutes);
-app.use('/', alunosRoutes);
-app.use('/', usuariosRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/students', alunosRoutes);
+app.use('/api/users', usuariosRoutes);
+app.use('/api/rollcalls', rollCallRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');

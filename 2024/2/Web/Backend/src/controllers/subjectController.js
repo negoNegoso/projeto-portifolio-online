@@ -1,7 +1,7 @@
-const Subject = require('../models/Subject');
+import Subject from '../models/Subject.js';
 
 // Criar uma nova materia
-exports.createSubject = async (req, res) => {
+const createSubject = async (req, res) => {
   try {
     const subject = await Subject.create(req.body);
     res.status(201).json(subject);
@@ -11,7 +11,7 @@ exports.createSubject = async (req, res) => {
 };
 
 // listar todas as materias
-exports.getAllSubjects = async (req, res) => {
+const getAllSubjects = async (req, res) => {
   try {
     const subjects = await Subject.findAll();
     res.status(200).json(subjects);
@@ -21,7 +21,7 @@ exports.getAllSubjects = async (req, res) => {
 };
 
 // Pegar materia pelo id
-exports.getSubjectById = async (req, res) => {
+const getSubjectById = async (req, res) => {
   try {
     const subject = await Subject.findByPk(req.params.id);
     if (subject) {
@@ -35,7 +35,7 @@ exports.getSubjectById = async (req, res) => {
 };
 
 // Update materia
-exports.updateSubject = async (req, res) => {
+const updateSubject = async (req, res) => {
   try {
     const subject = await Subject.findByPk(req.params.id);
     if (subject) {
@@ -50,7 +50,7 @@ exports.updateSubject = async (req, res) => {
 };
 
 // Delete materia
-exports.deleteSubject = async (req, res) => {
+const deleteSubject = async (req, res) => {
   try {
     const subject = await Subject.findByPk(req.params.id);
     if (subject) {
@@ -63,3 +63,5 @@ exports.deleteSubject = async (req, res) => {
     res.status(500).json({ error: 'Error deleting subject' });
   }
 };
+
+export { createSubject, getAllSubjects, getSubjectById, updateSubject, deleteSubject };
