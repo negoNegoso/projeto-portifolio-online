@@ -1,4 +1,4 @@
-.students-container {
+.studentsContainer {
   display: flex;
   font-family: 'Inter', sans-serif;
 }
@@ -27,7 +27,7 @@
   padding: 10px 0;
 }
 
-.main-content {
+.mainContent {
   flex: 1;
   padding: 20px;
 }
@@ -43,7 +43,7 @@
   gap: 10px;
 }
 
-.student-list {
+.studentList {
   margin-top: 20px;
 }
 

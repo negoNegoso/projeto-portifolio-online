@@ -1,3 +1,4 @@
+/* Query.module.css */
 @font-face {
   font-family: nunito;
   src: url('../../../assets/fonts/Nunito-Regular.ttf');
@@ -15,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-.query_container {
+.queryContainer {
   top: 0;
   width: 100vw;
   background-color: #f2f2f2;
@@ -23,7 +24,7 @@ body {
   font-family: nunito;
 }
 
-.query_side_content {
+.querySideContent {
   top: 0;
   width: 81%;
   height: 100%;
@@ -31,8 +32,8 @@ body {
   margin-left: 19.1%;
 }
 
-.query_info {
-  margin-top: 26px;
+.queryInfo {
+  margin-bottom: 26px;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -43,7 +44,7 @@ body {
   flex-wrap: wrap;
 }
 
-.query_title {
+.queryTitle {
   width: 93%;
   height: 79px;
   background-color: white;
@@ -51,25 +52,26 @@ body {
   color: black;
   display: flex;
   align-items: center;
+  margin-top: 26px;
 }
 
-.query_title_text {
+.queryTitleText {
   margin-left: 40px;
   font-size: 32px;
   font-weight: 500;
   color: #2c3e50;
 }
 
-.query_card {
+.queryCard {
   padding: 36px;
-  width: 45%;
+  width: 44%;
   height: 38%;
   background-color: white;
   border-radius: 10px;
   color: black;
 }
 
-.card_titles {
+.cardTitles {
   font-size: 32px;
   display: flex;
   justify-content: space-between;
@@ -78,17 +80,17 @@ body {
   margin-bottom: 16px;
 }
 
-.card_title p {
+.cardTitle p {
   font-weight: 500;
 }
 
-.card_content {
+.cardContent {
   font-size: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card_content p {
+.cardContent p {
   font-weight: 300;
 }
