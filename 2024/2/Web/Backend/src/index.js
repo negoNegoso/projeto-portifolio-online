@@ -13,6 +13,7 @@ import Classes from './models/Turmas.js';
 import Users from './models/Usuarios.js';
 import swaggerDocs from './config/swagger.js';
 
+
 dotenv.config();
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
 app.use('/', turmaRoutes);
 app.use('/', cursoRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');

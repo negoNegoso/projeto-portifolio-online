@@ -1,5 +1,4 @@
 import express from 'express';
-
 import {
   getUsers,
   createUser,
@@ -181,6 +180,7 @@ router.delete('/usuarios/:id', deleteUser);
  *         description: Erro ao realizar o login
  */
 router.post('/usuarios/login', loginUser);
+
 
 /**
  * @swagger

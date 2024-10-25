@@ -2,8 +2,7 @@ services:
   db:
     image: postgres:latest
     container_name: postgres-db
-    ports:
-      - '${PG_PORT}:5432'
+    ports: '${PG_PORT}:5432'
     environment:
       POSTGRES_DB: ${PG_DB}
       POSTGRES_USER: ${PG_USER}
