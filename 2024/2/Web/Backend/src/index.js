@@ -11,6 +11,7 @@ import Permissions from './models/Permissoes.js';
 import Roles from './models/Roles.js';
 import Classes from './models/Turmas.js';
 import Users from './models/Usuarios.js';
+import swaggerDocs from './config/swagger.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+swaggerDocs(app);
 
 app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
