@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Permissoes = sequelize.define(
+const Permissions = sequelize.define(
   'Permissoes',
   {
     id_permissao: {
@@ -23,4 +23,4 @@ const Permissoes = sequelize.define(
   }
 );
 
-export default Permissoes;
+export default Permissions;

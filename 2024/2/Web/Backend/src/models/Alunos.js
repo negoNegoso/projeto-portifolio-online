@@ -14,8 +14,8 @@ const Students = sequelize.define(
       allowNull: false,
       validate: {
         notNull: { msg: 'Nome completo é obrigatório' },
-        len: [3, 255]
-      }
+        len: [3, 255],
+      },
     },
     RA: {
       type: DataTypes.BIGINT,
@@ -26,19 +26,19 @@ const Students = sequelize.define(
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: 'A senha é obrigatória.'
+          msg: 'A senha é obrigatória.',
         },
         len: {
-          args: [6,255],
-          msg: 'A senha deve ter no minímo 6 caracteres.'
-        }
-      }
+          args: [6, 255],
+          msg: 'A senha deve ter no minímo 6 caracteres.',
+        },
+      },
     },
     data_nascimento: {
       type: DataTypes.DATE,
       validate: {
-        isDate: true
-      }
+        isDate: true,
+      },
     },
     genero: {
       type: DataTypes.TEXT,
@@ -50,7 +50,7 @@ const Students = sequelize.define(
       type: DataTypes.TEXT,
       validate: {
         isEmail: { msg: 'Email inválido.' },
-      }
+      },
     },
     telefone: {
       type: DataTypes.TEXT,
@@ -77,21 +77,20 @@ const Students = sequelize.define(
     id_curso: {
       type: DataTypes.BIGINT,
       references: {
-        model: 'Cursos',
+        model: 'cursos',
         key: 'id_curso',
       },
     },
     id_turma: {
       type: DataTypes.BIGINT,
       references: {
-        model: 'Turmas',
+        model: 'turmas',
         key: 'id_turma',
       },
     },
     caminho_da_foto: {
       type: DataTypes.TEXT,
-      
-    }
+    },
   },
   {
     tableName: 'alunos',
