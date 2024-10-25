@@ -1,10 +1,16 @@
 import express from 'express';
-import { getStudents, createStudent, getStudentById, updateStudent, deleteStudent } from '../controllers/alunoController.js';
+import {
+  getStudents,
+  createStudent,
+  getStudentById,
+  updateStudent,
+  deleteStudent,
+} from '../controllers/alunoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/alunos', verifyToken, getStudents);
+router.get('/alunos', getStudents);
 router.post('/alunos', createStudent);
 router.get('/alunos/:id', getStudentById);
 router.put('/alunos/:id', updateStudent);

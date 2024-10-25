@@ -1,10 +1,16 @@
 import express from 'express';
 import sequelize from './config/database.js';
 import dotenv from 'dotenv';
-import { Alunos, Cursos, Permissoes, Roles, Turmas, Usuarios } from './models'
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
+import cursoRoutes from './routes/cursoRoutes.js';
+import Students from './models/Alunos.js';
+import Courses from './models/Cursos.js';
+import Permissions from './models/Permissoes.js';
+import Roles from './models/Roles.js';
+import Classes from './models/Turmas.js';
+import Users from './models/Usuarios.js';
 
 dotenv.config();
 
@@ -16,6 +22,7 @@ app.use(express.json());
 app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
 app.use('/', turmaRoutes);
+app.use('/', cursoRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
