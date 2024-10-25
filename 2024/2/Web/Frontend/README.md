@@ -53,15 +53,20 @@ Este Projeto foi desenvolvido utilizando as seguintes tecnologias:
 1. Clone o projeto utilizando este comando:
    ```bash
    git clone https://github.com/PO-DSM4-2024/frontend-po-dsm4-2024.git
+   ```
 2. Navegue até o diretório do projeto:
    ```bash
    cd frontend-po-dsm4-2024
+   ```
 3. Instale as dependências:
    ```bash
    npm install
+   ```
 4. Execute o projeto:
    ```bash
    npm run dev
+   ```
+
 ## 🛠️ Uso
 
 Para uma melhor experiência, recomenda-se usar a escala da tela do computador em 100%. Você pode alterar a escala da tela do seu computador nas configurações do sistema.
