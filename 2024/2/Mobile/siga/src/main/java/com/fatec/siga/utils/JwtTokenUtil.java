@@ -1,5 +1,7 @@
 package com.fatec.siga.utils;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +12,7 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil {
 
-    private String secret = "n8989j9009qwcemev=.pz;cdwjhk93lt4çvr";  // Troque por um valor mais seguro
-
+    private String secret = "n8989j9009qwcemev=.pz;cdwjhk93lt4çvr";
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails.getUsername());
