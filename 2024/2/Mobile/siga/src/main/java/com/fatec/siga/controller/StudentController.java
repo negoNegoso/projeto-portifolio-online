@@ -1,59 +1,49 @@
 package com.fatec.siga.controller;
 
-import java.util.List;
-
+import com.fatec.siga.models.Students;
+import com.fatec.siga.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import com.fatec.siga.models.entity.Student;
-import com.fatec.siga.service.StudentService;
+import java.util.List;
 
-@Controller
-@RequestMapping("/students")
+@RestController
+@RequestMapping("/api/students")
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
 
-    @GetMapping("/support")
-    public ResponseEntity<String> viewSupportPage() { 
-        return ResponseEntity.ok("Welcome to the Support Page"); // Returning a simple message
+    private final StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @GetMapping("/")  
-    public ResponseEntity<List<Student>> viewHomePage() { 
-        List<Student> students = studentService.getAllStudents();
+    @GetMapping("/")
+    public ResponseEntity<List<Students>> getAllStudents() {
+        List<Students> students = studentService.findAll();
         return ResponseEntity.ok(students);
     }
 
-    @GetMapping("/showNewStudentForm")
-    public ResponseEntity<Student> showNewStudentForm() {
-        Student student = new Student();
-        return ResponseEntity.ok(student);
+    @GetMapping("/{id}")
+    public ResponseEntity<Students> getStudentById(@PathVariable Long id) {
+        return studentService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/saveStudent")
-    public ResponseEntity<Void> saveStudent(@RequestBody Student student) {
-        studentService.saveStudent(student);
-        return ResponseEntity.created(null).build(); // Adjust the URI as needed
+    @PostMapping("/")
+    public ResponseEntity<Students> saveStudent(@RequestBody Students student) {
+        Students savedStudent = studentService.saveStudent(student);
+        return ResponseEntity.ok(savedStudent);
     }
-
-    @GetMapping("/showFormForUpdate")
-    public ResponseEntity<Student> showFormForUpdate(@RequestParam(value = "id") Long id) {
-        Student student = studentService.getStudentById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-        return ResponseEntity.ok(student);
-    }
-
-    @DeleteMapping("/deleteStudent")
-    public ResponseEntity<Void> deleteStudent(@RequestParam(value = "id") Long id) {
-        studentService.deleteStudent(id);
-        return ResponseEntity.ok().build();
+    @PatchMapping("/{id}")
+    public ResponseEntity<Students> updateStudent(@PathVariable Long id, @RequestBody Students updatedStudent) {
+        Students updated = studentService.updateStudent(id, updatedStudent);
+        if (updated != null) {
+            return ResponseEntity.ok(updated);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

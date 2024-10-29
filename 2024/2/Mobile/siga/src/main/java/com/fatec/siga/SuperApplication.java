@@ -10,5 +10,4 @@ public class SuperApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SuperApplication.class, args);
 	}
-
 }
