@@ -2,7 +2,6 @@ import Users from '../models/Usuarios.js';
 import bcrypt from 'bcrypt';
 import login from '../services/authService.js';
 import { response, handleError } from '../Utils/Utils.js';
-import { login } from '../services/AuthService.js';
 
 
 const getUsers = async (req, res) => {
