@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Turmas = sequelize.define(
+const Classes = sequelize.define(
   'Turmas',
   {
     id_turma: {
@@ -39,4 +39,4 @@ const Turmas = sequelize.define(
   }
 );
 
-export default Turmas;
+export default Classes;
