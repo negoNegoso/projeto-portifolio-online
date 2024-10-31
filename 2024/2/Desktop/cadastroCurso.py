@@ -3,6 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 
 from curso_backend import cadastrar_curso
+from messages_front import *
 
 # Função para carregar imagens
 def load_image(path, width, height):
@@ -21,6 +22,7 @@ def cadastrar_button_click():
 
     # Chama a função de cadastro do backend passando os dados vindos do formulário
     cadastrar_curso(nome, sigla, tipo_duracao, periodo_curso, tipo_graduacao)
+    exibir_popup(Msg.title(1),(Msg.success("created","Curso")))
 
 # "Voltar"
 def go_back():
@@ -124,7 +126,7 @@ tipo_graduacao_var = create_label_and_optionmenu("Tipo de graduação do curso:"
 back_button = tk.Button(bg_canvas, text="Voltar", command=go_back, width=20, bg="white", fg="#004080", font=("Montserrat Semibold", 12))
 back_button.place(relx=0.40, rely=0.85, anchor=tk.CENTER)  # Posiciona o botão no canvas
 
-next_button = tk.Button(bg_canvas, text="Próximo", command=cadastrar_button_click, width=20, bg="white", fg="#004080", font=("Montserrat Semibold", 12))
+next_button = tk.Button(bg_canvas, text="Cadastrar", command=cadastrar_button_click, width=20, bg="white", fg="#004080", font=("Montserrat Semibold", 12))
 next_button.place(relx=0.60, rely=0.85, anchor=tk.CENTER)  # Posiciona o botão no canvas
 
 # Adicionando logo ao canvas
