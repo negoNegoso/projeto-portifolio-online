@@ -1,3 +1,153 @@
+-- Criar a tabela "Cursos"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'cursos') THEN
+        CREATE TABLE Cursos (
+            id_curso BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_curso TEXT NOT NULL,
+            descricao_curso TEXT,
+            duracao TEXT,
+            categoria TEXT,
+            nivel TEXT,
+            carga_horaria INTEGER,
+            data_inicio DATE,
+            data_fim DATE
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Materias"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'materias') THEN
+        CREATE TABLE Materias (
+            id_materia BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_materia TEXT NOT NULL,
+            professor_materia TEXT NOT NULL,
+            objetivo TEXT,
+            ementa TEXT,
+            carga_horaria INTEGER,
+            id_curso BIGINT REFERENCES Cursos(id_curso) ON DELETE CASCADE
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Turmas"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'turmas') THEN
+        CREATE TABLE Turmas (
+            id_turma BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_turma TEXT NOT NULL,
+            ano_letivo TEXT NOT NULL,
+            id_curso BIGINT REFERENCES Cursos(id_curso) ON DELETE SET NULL,
+            horario TEXT,
+            sala TEXT,
+            professor_responsavel TEXT,
+            capacidade_maxima INTEGER
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Alunos"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'alunos') THEN
+        CREATE TABLE Alunos (
+            id_aluno BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_completo TEXT NOT NULL,
+            RA BIGINT NOT NULL,
+            senha TEXT NOT NULL,
+            data_nascimento DATE,
+            genero TEXT,
+            endereco TEXT,
+            email TEXT,
+            telefone TEXT,
+            documento_identidade TEXT,
+            cpf TEXT,
+            data_matricula DATE,
+            numero_matricula TEXT,
+            id_curso BIGINT REFERENCES Cursos(id_curso) ON DELETE SET NULL,
+            id_turma BIGINT REFERENCES Turmas(id_turma) ON DELETE SET NULL
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Alunos_Materias"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'alunos_materias') THEN
+        CREATE TABLE Alunos_Materias (
+            id_aluno BIGINT REFERENCES Alunos(id_aluno) ON DELETE CASCADE,
+            id_materia BIGINT REFERENCES Materias(id_materia) ON DELETE CASCADE,
+            PRIMARY KEY (id_aluno, id_materia)
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Usuarios"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'usuarios') THEN
+        CREATE TABLE Usuarios (
+            id_usuario BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_completo TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            senha BYTEA NOT NULL,
+            tipo_usuario TEXT CHECK (tipo_usuario IN ('Professor', 'Secretaria', 'Administrador')) NOT NULL,
+            data_criacao TIMESTAMP DEFAULT NOW(),
+            status TEXT NOT NULL,
+            area_atuacao TEXT,
+            setor TEXT,
+            data_contratacao DATE
+        );
+    END IF;
+END $$;
+
+
+-- Criar a tabela "Permissoes"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'permissoes') THEN
+        CREATE TABLE Permissoes (
+            id_permissao BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            nome_permissao TEXT NOT NULL,
+            descricao_permissao TEXT
+        );
+    END IF;
+END $$;
+
+-- Criar a tabela "Roles"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'roles') THEN
+        CREATE TABLE Roles (
+            id_role BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            id_usuario BIGINT REFERENCES Usuarios(id_usuario) ON DELETE CASCADE,
+            id_permissao BIGINT REFERENCES Permissoes(id_permissao) ON DELETE CASCADE
+        );
+    END IF;
+END $$;
+
+CREATE ROLE user_reading_create
+WITH LOGIN
+PASSWORD 'userreadingcreate';
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO user_reading_create;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO user_reading_create;
+
+CREATE ROLE user_all
+WITH LOGIN
+PASSWORD 'userall';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO user_all;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO user_all;
+
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT ON TABLES TO user_reading_create;
+
+
 INSERT INTO Cursos (nome_curso, descricao_curso, duracao, categoria, nivel, carga_horaria, data_inicio, data_fim)
 VALUES 
 ('Engenharia de Software', 'Curso de desenvolvimento de sistemas', '4 anos', 'Tecnologia', 'Graduação', 3600, '2022-01-15', '2026-12-15'),
@@ -129,28 +279,7 @@ VALUES
 ('Cláudia Souza', 'claudia.souza.secretaria@outlook.com', 'SecClaudia23$', 'Secretaria', 'Ativo', 'Gestão', 'Secretaria Geral', '2020-07-03'),
 ('Ricardo Martins', 'ricardo.martins.secretaria@gmail.com', 'SecretRicardo23$', 'Secretaria', 'Ativo', 'Educação', 'Secretaria de Cursos', '2021-11-28');
 
-INSERT INTO Chamada (id_aluno, id_turma, id_materia, data_chamada, presenca, justificativa, horario_chamada, observacoes)
-VALUES
-(1, 1, 1, '2023-03-15', TRUE, NULL, '19:10:00', 'Presente no horário.'),
-(2, 1, 1, '2023-03-15', TRUE, NULL, '19:10:00', 'Presente no horário.'),
-(3, 1, 2, '2023-03-16', FALSE, 'Problemas de saúde', '19:15:00', 'Justificou a falta.'),
-(4, 1, 2, '2023-03-16', TRUE, NULL, '19:15:00', 'Presente no horário.'),
-(5, 1, 3, '2023-03-17', TRUE, NULL, '19:20:00', 'Participou ativamente.'),
-(6, 5, 4, '2023-03-18', TRUE, NULL, '19:25:00', 'Chegou no horário.'),
-(7, 5, 4, '2023-03-18', FALSE, 'Compromissos pessoais', '19:25:00', 'Justificou a falta.'),
-(11, 2, 6, '2023-03-12', TRUE, NULL, '08:10:00', 'Chegou cedo.'),
-(12, 2, 7, '2023-03-13', FALSE, 'Consultas médicas', '08:15:00', 'Justificou a ausência.'),
-(13, 2, 8, '2023-03-14', TRUE, NULL, '08:20:00', 'Participou das discussões.'),
-(14, 6, 8, '2023-03-15', TRUE, NULL, '08:25:00', 'Muito participativa.'),
-(15, 6, 9, '2023-03-16', TRUE, NULL, '08:30:00', 'Contribuiu com a aula.'),
-(16, 6, 6, '2023-03-17', TRUE, NULL, '08:35:00', 'Chegou no horário.'),
-(21, 3, 10, '2023-03-11', TRUE, NULL, '14:10:00', 'Excelente contribuição.'),
-(22, 3, 11, '2023-03-12', FALSE, 'Trabalho', '14:15:00', 'Justificou a falta.'),
-(23, 3, 12, '2023-03-13', TRUE, NULL, '14:20:00', 'Presença confirmada.'),
-(24, 3, 13, '2023-03-14', TRUE, NULL, '14:25:00', 'Fez perguntas interessantes.'),
-(25, 7, 14, '2023-03-15', TRUE, NULL, '14:30:00', 'Participou ativamente.'),
-(31, 4, 15, '2023-03-10', TRUE, NULL, '19:10:00', 'Presente no horário.'),
-(32, 4, 16, '2023-03-11', TRUE, NULL, '19:15:00', 'Contribuiu bastante para a aula.');
+
 
 
 INSERT INTO Alunos_Materias (id_aluno, id_materia)
