@@ -5,6 +5,7 @@ import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
 import cursoRoutes from './routes/cursoRoutes.js';
+import gradeRoutes from './routes/gradeRoutes.js';
 import Students from './models/Alunos.js';
 import Courses from './models/Cursos.js';
 import Permissions from './models/Permissoes.js';
@@ -26,6 +27,7 @@ app.use('/', alunosRoutes);
 app.use('/', usuariosRoutes);
 app.use('/', turmaRoutes);
 app.use('/', cursoRoutes);
+app.use('/', gradeRoutes);
 
 
 app.get('/', (req, res) => {
