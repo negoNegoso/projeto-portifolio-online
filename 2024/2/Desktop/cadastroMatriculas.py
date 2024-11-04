@@ -50,7 +50,7 @@ for i in range(window_width):
     bg_canvas.create_line(i, 0, i, window_height, fill=color)
 
 # Carregar imagem de fundo
-background_image = load_image("imagens/lado_direito.png", int(window_width * 0.75), int(window_height * 0.71))
+background_image = load_image("imgs/lado_direito.png", int(window_width * 0.75), int(window_height * 0.71))
 bg_canvas.create_image(window_width//2, window_height//2, image=background_image, anchor=tk.CENTER)
 
 # Frame para os campos de entrada (com tamanho fixo)
@@ -84,7 +84,7 @@ nome_entry = create_label_and_entry("Situação da Matrícula:", 7, 2)
 nome_entry = create_label_and_entry("Sigla do Curso:", 9, 2, colspan=2)
 
 # Carregando imagem da seta
-arrow_image = load_image("imagens/seta.png", 20, 15)
+arrow_image = load_image("imgs/seta.png", 20, 15)
 
 # Alterando a criação do OptionMenu
 def create_label_and_optionmenu(text, row, column, colspan, options):
@@ -127,7 +127,7 @@ next_button = tk.Button(bg_canvas, text="Próximo", command=next_page, width=20,
 next_button.place(relx=0.70, rely=0.88, anchor=tk.CENTER)  # Posiciona o botão no canvas
 
 # Adicionando logo ao canvas
-logo_image = load_image("imagens/logo.png", 170, 76)
+logo_image = load_image("imgs/logo.png", 170, 76)
 bg_canvas.create_image(30, 40, image=logo_image, anchor='nw')
 
 # Iniciando o loop

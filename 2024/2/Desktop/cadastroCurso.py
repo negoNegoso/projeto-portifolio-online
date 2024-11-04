@@ -21,12 +21,15 @@ def cadastrar_button_click():
     tipo_graduacao = tipo_graduacao_var.get()
 
     # Chama a função de cadastro do backend passando os dados vindos do formulário
-    cadastrar_curso(nome, sigla, tipo_duracao, periodo_curso, tipo_graduacao)
-    exibir_popup(Msg.title(1),(Msg.success("created","Curso")))
-
+    cadastrar = cadastrar_curso(nome, sigla, tipo_duracao, periodo_curso, tipo_graduacao)
+    if cadastrar == 'sucesso': 
+        exibir_popup(Msg.title(1),(Msg.success("created","Curso")))
+    else:
+        exibir_popup("Erro!", ("Erro ao cadastrar o curso"))
+    
 # "Voltar"
 def go_back():
-    print("Página anterior")
+    exit()
 
 # Criação da janela principal
 root = tk.Tk()
@@ -62,7 +65,7 @@ for i in range(window_width):
     bg_canvas.create_line(i, 0, i, window_height, fill=color)
 
 # Carregar imagem de fundo
-background_image = load_image("imagens/lado_direito.png", int(window_width * 0.60), int(window_height * 0.65))
+background_image = load_image("imgs/lado_direito.png", int(window_width * 0.60), int(window_height * 0.65))
 bg_canvas.create_image(window_width//2, window_height//2, image=background_image, anchor=tk.CENTER)
 
 # Frame para os campos de entrada (com tamanho fixo)
@@ -92,7 +95,7 @@ nome_entry = create_label_and_entry("Nome do curso:", 4, 0, colspan=2)
 sigla_entry = create_label_and_entry("Sigla do curso:", 6, 0)
 
 # Carregando imagem da seta
-arrow_image = load_image("imagens/seta.png", 20, 15)
+arrow_image = load_image("imgs/seta.png", 20, 15)
 
 # Campos de opção (OptionMenu) com seta personalizada
 def create_label_and_optionmenu(text, row, column, options):
@@ -130,7 +133,7 @@ next_button = tk.Button(bg_canvas, text="Cadastrar", command=cadastrar_button_cl
 next_button.place(relx=0.60, rely=0.85, anchor=tk.CENTER)  # Posiciona o botão no canvas
 
 # Adicionando logo ao canvas
-logo_image = load_image("imagens/logo.png", 180, 80)
+logo_image = load_image("imgs/logo.png", 180, 80)
 bg_canvas.create_image(30, 40, image=logo_image, anchor='nw')
 
 # Iniciando o loop
