@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   `tipoDuração` enum('semestral','anual') NOT NULL,
   `periodoCurso` enum('vespertino','matutino','noturno') NOT NULL,
   `tipoGraduacaoCurso` enum('Bacharelado','Licenciatura','Tecnólogo','Mestrado','Doutorado') NOT NULL,
-  `descricaoCurso` longtext NOT NULL,
+  `descricaoCurso` longtext,
   PRIMARY KEY (`cursoID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
