@@ -26,6 +26,10 @@ import search from './search.png';
 import trash from './del.png';
 import edit from './edit.png';
 import arrow from './right-arrow.png';
+import backArrow from './back-arrow.png';
+import downArrow from './down-arrow.png';
+import calendars from './calendar.png';
+import userEmpty from './user-empty.png';
 
 const icons = {
   book: {
@@ -139,6 +143,22 @@ const icons = {
   arrow: {
     src: arrow,
     alt: 'arrow'
+  },
+  backArrow: {
+    src: backArrow,
+    alt: 'backArrow'
+  },
+  downArrow: {
+    src: downArrow,
+    alt: 'downArrow'
+  },
+  calendars: {
+    src: calendars,
+    alt: 'calendars'
+  },
+  userEmpty: {
+    src: userEmpty,
+    alt: 'userEmpty'
   }
 };
 
