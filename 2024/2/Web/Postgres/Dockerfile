@@ -6,4 +6,8 @@ ENV POSTGRES_DB=praxis
 
 COPY ./query.sql /docker-entrypoint-initdb.d/
 
+COPY script.sh /docker-entrypoint-initdb.d/
+
+RUN chmod +x /docker-entrypoint-initdb.d/script.sh
+
 EXPOSE 5432

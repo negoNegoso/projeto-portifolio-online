@@ -92,6 +92,26 @@ services:
       - "10050:10050"
     depends_on:
       - zabbix-sql-server
+  zabbix-agent-db:
+    image: zabbix/zabbix-agent2:alpine-7.0-latest
+    container_name: zabbix-agent-db
+    environment:
+      ZBX_SERVER_HOST: zabbix-server-pgsql
+      ZBX_HOSTNAME: "Zabbix Agent DB"
+      ZBX_AGENT_MACROS: |
+        {
+          "{$PG.PASSWORD}": "zabbix",
+          "{$PG.DATABASE}": "praxis",
+          "{$PG.CONNSTRING.AGENT2}": "postgresql://praxis_db:5432"
+        }
+    links:
+      - zabbix-sql-server:zabbix-sql-server
+    networks:
+      - zabbix-net
+    ports:
+      - "10052:10050"
+    depends_on:
+      - zabbix-sql-server
 networks:
   zabbix-net:
     driver: bridge

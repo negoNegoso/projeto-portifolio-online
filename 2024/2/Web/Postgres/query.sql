@@ -366,6 +366,11 @@ VALUES
 (13, 3);
 
 
+CREATE USER zbx_monitor WITH PASSWORD 'zabbix' INHERIT;
+GRANT pg_monitor TO zbx_monitor;
+
+
+
 
 
 
