@@ -15,15 +15,20 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        """Lida com requisições GET para listar apenas os alunos."""
+        """Lida com requisições GET para listar apenas os alunos sem o campo de senha."""
         self._set_headers()
         
         try:
             connection = create_connection()
             cursor = connection.cursor(dictionary=True)
             
-            # Consulta para listar apenas alunos
-            cursor.execute("SELECT * FROM USUARIOS WHERE tipoUsuario = 'aluno'")  # Ajuste o campo e valor conforme necessário
+            # Consulta para listar apenas alunos, excluindo o campo de senha
+            cursor.execute("""
+                SELECT usuarioID, nomeUsuario, dataNascUsuario, sexoUsuario, 
+                       cpfUsuario, tipoUsuario, ufUsuarios, ativo, adminID
+                FROM USUARIOS 
+                WHERE tipoUsuario = 'aluno'
+            """)
             result = cursor.fetchall()
             
             # Envia a resposta JSON com os dados dos alunos
