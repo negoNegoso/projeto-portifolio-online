@@ -1,0 +1,17 @@
+# Usa uma imagem base Python
+FROM python:3.12
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia os arquivos para o container
+COPY . /app
+
+# Instala as dependências
+RUN pip install -r requirements.txt
+
+# Expõe a porta necessária para o microserviço
+EXPOSE 8080
+
+# Comando para iniciar o microserviço
+CMD ["python", "alunos_service.py"]
