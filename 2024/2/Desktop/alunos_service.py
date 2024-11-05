@@ -15,15 +15,15 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        """Lida com requisições GET para listar todos os alunos."""
+        """Lida com requisições GET para listar apenas os alunos."""
         self._set_headers()
         
         try:
             connection = create_connection()
             cursor = connection.cursor(dictionary=True)
             
-            # Consulta para listar todos os alunos
-            cursor.execute("SELECT * FROM ALUNOS")  # Verifique o nome exato da tabela de alunos
+            # Consulta para listar apenas alunos
+            cursor.execute("SELECT * FROM USUARIOS WHERE tipoUsuario = 'aluno'")  # Ajuste o campo e valor conforme necessário
             result = cursor.fetchall()
             
             # Envia a resposta JSON com os dados dos alunos
