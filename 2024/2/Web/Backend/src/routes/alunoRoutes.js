@@ -7,6 +7,8 @@ import {
   deleteStudent,
 } from '../controllers/alunoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import alunoSchema from '../schemas/alunoSchema.js';
 
 const router = express.Router();
 
@@ -19,7 +21,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/alunos:
+ * /alunos:
  *   get:
  *     summary: Retorna todos os alunos
  *     tags: [Alunos]
@@ -37,7 +39,7 @@ router.get('/alunos', getStudents);
 
 /**
  * @swagger
- * /api/alunos:
+ * /alunos:
  *   post:
  *     summary: Cria um novo aluno
  *     tags: [Alunos]
@@ -57,11 +59,11 @@ router.get('/alunos', getStudents);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/alunos', createStudent);
+router.post('/alunos', alunoSchema, validateSchema, createStudent);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   get:
  *     summary: Retorna um aluno pelo ID
  *     tags: [Alunos]
@@ -86,7 +88,7 @@ router.get('/alunos/:id', getStudentById);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   put:
  *     summary: Atualiza um aluno pelo ID
  *     tags: [Alunos]
@@ -113,11 +115,11 @@ router.get('/alunos/:id', getStudentById);
  *       404:
  *         description: Aluno não encontrado
  */
-router.put('/alunos/:id', updateStudent);
+router.put('/alunos/:id', alunoSchema, validateSchema, updateStudent);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   delete:
  *     summary: Deleta um aluno pelo ID
  *     tags: [Alunos]

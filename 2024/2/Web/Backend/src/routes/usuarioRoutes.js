@@ -7,6 +7,8 @@ import {
   deleteUser,
   loginUser,
 } from '../controllers/usuarioController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import usuarioSchema from '../schemas/usuarioSchema.js';
 
 const router = express.Router();
 
@@ -29,7 +31,7 @@ const router = express.Router();
  *       500:
  *         description: Erro ao obter os usuários
  */
-router.get('/usuarios', getUsers);
+router.get('/usuarios', usuarioSchema, validateSchema, getUsers);
 
 /**
  * @swagger
@@ -64,7 +66,7 @@ router.get('/usuarios', getUsers);
  *       500:
  *         description: Erro ao criar o usuário
  */
-router.post('/usuarios', createUser);
+router.post('/usuarios', usuarioSchema, validateSchema, createUser);
 
 /**
  * @swagger

@@ -7,6 +7,8 @@ import {
   deleteCourse,
 } from '../controllers/cursoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import cursoSchema from '../schemas/cursoSchema.js';
 
 const router = express.Router();
 
@@ -19,7 +21,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/cursos:
+ * /cursos:
  *   get:
  *     summary: Retorna todos os cursos
  *     tags: [Cursos]
@@ -33,11 +35,11 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Cursos'
  */
-router.get('/cursos', getCourses);
+router.get('/cursos', cursoSchema, validateSchema,  getCourses);
 
 /**
  * @swagger
- * /api/cursos:
+ * /cursos:
  *   post:
  *     summary: Cria um novo curso
  *     tags: [Cursos]
@@ -57,11 +59,11 @@ router.get('/cursos', getCourses);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/cursos', createCourse);
+router.post('/cursos', cursoSchema, validateSchema, createCourse);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   get:
  *     summary: Retorna um curso pelo ID
  *     tags: [Cursos]
@@ -86,7 +88,7 @@ router.get('/cursos/:id', getCourseById);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   put:
  *     summary: Atualiza um curso pelo ID
  *     tags: [Cursos]
@@ -117,7 +119,7 @@ router.put('/cursos/:id', updateCourse);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   delete:
  *     summary: Deleta um curso pelo ID
  *     tags: [Cursos]

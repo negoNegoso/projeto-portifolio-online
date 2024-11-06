@@ -6,11 +6,13 @@ import {
   updateRollCall,
   deleteRollCall,
 } from '../controllers/rollCallController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import rollCallSchema from '../schemas/rollCallSchema.js';
 
 const router = express.Router();
 
-router.get('/', getRollCall);
-router.post('/', createRollCall);
+router.get('/', rollCallSchema, validateSchema, getRollCall);
+router.post('/', rollCallSchema, validateSchema, createRollCall);
 router.get('/:id', getRollCallById);
 router.put('/:id', updateRollCall);
 router.delete('/:id', deleteRollCall);

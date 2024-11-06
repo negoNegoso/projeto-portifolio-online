@@ -1,5 +1,7 @@
 import express from 'express';
 import { getTurmas, createTurma, getTurmaById, updateTurma, deleteTurma } from '../controllers/turmaController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import turmaSchema from '../schemas/turmaSchema.js';
 
 const router = express.Router();
 
@@ -23,7 +25,7 @@ const router = express.Router();
  *       500:
  *         description: Erro ao obter as turmas
  */
-router.get('/turmas', getTurmas);
+router.get('/turmas', turmaSchema, validateSchema, getTurmas);
 
 
 /**
@@ -59,7 +61,7 @@ router.get('/turmas', getTurmas);
  *       500:
  *         description: Erro ao criar a turma
  */
-router.post('/create-turma', createTurma);
+router.post('/create-turma', turmaSchema, validateSchema, createTurma);
 
 /**
  * @swagger

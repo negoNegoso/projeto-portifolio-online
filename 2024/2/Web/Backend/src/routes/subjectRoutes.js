@@ -7,14 +7,16 @@ import {
   updateSubject,
   deleteSubject,
 } from '../controllers/subjectController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import subjectSchema from '../schemas/subjectSchema.js';
 
 const router = express.Router();
 
 // Criar uma nova matéria
-router.post('/', createSubject);
+router.post('/', subjectSchema, validateSchema, createSubject);
 
 // Route para listar materias
-router.get('/', getAllSubjects);
+router.get('/', subjectSchema, validateSchema, getAllSubjects);
 
 // Route para pegar materia pelo id
 router.get('/:id', getSubjectById);
