@@ -93,11 +93,11 @@ services:
     depends_on:
       - zabbix-sql-server
   zabbix-agent-db:
-    build:
-      context: ./Zabbix
-      dockerfile: Dockerfile
+    image: zabbix/zabbix-agent2:alpine-7.0-latest
     container_name: zabbix-agent-db
     environment:
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
       ZBX_SERVER_HOST: zabbix-server-pgsql
     links:
       - zabbix-sql-server:zabbix-sql-server
@@ -107,6 +107,17 @@ services:
       - "10052:10050"
     depends_on:
       - zabbix-sql-server
+  zabbix-scripts:
+    build:
+      context: ./Zabbix
+      dockerfile: Dockerfile
+    container_name: zabbix-scripts
+    networks:
+      - zabbix-net
+    depends_on:
+      - zabbix-sql-server
+      - zabbix-agent-db
+      - zabbix-agent
 networks:
   zabbix-net:
     driver: bridge
