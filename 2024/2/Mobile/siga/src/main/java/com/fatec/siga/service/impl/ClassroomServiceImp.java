@@ -1,7 +1,7 @@
 package com.fatec.siga.service.impl;
 
 
-import jakarta.transaction.Transactional;
+import javax.transaction.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

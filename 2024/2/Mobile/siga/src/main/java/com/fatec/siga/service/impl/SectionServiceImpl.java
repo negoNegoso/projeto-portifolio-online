@@ -5,7 +5,7 @@ import com.fatec.siga.models.Teachers;
 import com.fatec.siga.repository.SectionRepository;
 import com.fatec.siga.repository.TeacherRepository;
 import com.fatec.siga.service.SectionService;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

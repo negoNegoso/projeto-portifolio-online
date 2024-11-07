@@ -3,7 +3,7 @@ package com.fatec.siga.service.impl;
 import com.fatec.siga.models.Grade;
 import com.fatec.siga.repository.GradeRepository;
 import com.fatec.siga.service.GradeService;
-import jakarta.transaction.Transactional;
+import javax.transaction.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

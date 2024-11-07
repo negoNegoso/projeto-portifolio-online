@@ -3,7 +3,7 @@ package com.fatec.siga.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fatec.siga.constants.enumeration.AttendanceStatus;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
