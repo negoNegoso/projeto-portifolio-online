@@ -136,7 +136,6 @@ router.put('/alunos/:id', updateStudent);
  */
 router.delete('/alunos/:id', deleteStudent);
 
-
 /**
  * @swagger
  * components:

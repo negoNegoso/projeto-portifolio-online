@@ -1,11 +1,5 @@
 import express from 'express';
-import {
-  getCourses,
-  createCourse,
-  getCourseById,
-  updateCourse,
-  deleteCourse,
-} from '../controllers/cursoController.js';
+import { getCourses, createCourse, getCourseById, updateCourse, deleteCourse } from '../controllers/cursoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();

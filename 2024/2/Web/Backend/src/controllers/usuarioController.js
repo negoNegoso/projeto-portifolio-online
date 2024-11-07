@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import login from '../services/AuthService.js';
 import { response, handleError } from '../Utils/Utils.js';
 
-
 const getUsers = async (req, res) => {
   try {
     const users = await Users.findAll();

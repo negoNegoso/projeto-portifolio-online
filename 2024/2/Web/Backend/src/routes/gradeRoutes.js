@@ -1,11 +1,5 @@
 import express from 'express';
-import {
-  createGrade,
-  getAllGrades,
-  getGradeById,
-  updateGrade,
-  deleteGrade,
-} from '../controllers/gradeController.js';
+import { createGrade, getAllGrades, getGradeById, updateGrade, deleteGrade } from '../controllers/gradeController.js';
 
 const router = express.Router();
 

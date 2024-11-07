@@ -181,7 +181,6 @@ router.delete('/usuarios/:id', deleteUser);
  */
 router.post('/usuarios/login', loginUser);
 
-
 /**
  * @swagger
  * components:
@@ -222,6 +221,5 @@ router.post('/usuarios/login', loginUser);
  *         status: "ativo"
  *         caminho_da_foto: "/fotos/joao_pereira.jpg"
  */
-
 
 export default router;

@@ -10,7 +10,6 @@ const router = express.Router();
  *   description: Rota para gerenciamento de turmas
  */
 
-
 /**
  * @swagger
  * /turmas:
@@ -24,7 +23,6 @@ const router = express.Router();
  *         description: Erro ao obter as turmas
  */
 router.get('/turmas', getTurmas);
-
 
 /**
  * @swagger

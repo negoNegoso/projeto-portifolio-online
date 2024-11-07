@@ -6,6 +6,7 @@ import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
 import cursoRoutes from './routes/cursoRoutes.js';
 import gradeRoutes from './routes/gradeRoutes.js';
+import exposedRoutes from './routes/exposedRoutes.js';
 import Students from './models/Alunos.js';
 import Courses from './models/Cursos.js';
 import Permissions from './models/Permissoes.js';
@@ -13,7 +14,6 @@ import Roles from './models/Roles.js';
 import Classes from './models/Turmas.js';
 import Users from './models/Usuarios.js';
 import swaggerDocs from './config/swagger.js';
-
 
 dotenv.config();
 
@@ -28,7 +28,7 @@ app.use('/', usuariosRoutes);
 app.use('/', turmaRoutes);
 app.use('/', cursoRoutes);
 app.use('/', gradeRoutes);
-
+app.use('/', exposedRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
