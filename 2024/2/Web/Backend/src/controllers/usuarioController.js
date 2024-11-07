@@ -1,6 +1,6 @@
 import Users from '../models/Usuarios.js';
 import bcrypt from 'bcrypt';
-import login from '../services/authService.js';
+import login from '../services/AuthService.js';
 import { response, handleError } from '../Utils/Utils.js';
 
 
