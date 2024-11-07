@@ -1,6 +1,5 @@
 from messages_front import *
 
-
 exibir_popup(Msg.title(0),(Msg.error("created","aluno")))
 
 #acima um exemplo simples de como usar a classe de mensagens

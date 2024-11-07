@@ -1,4 +1,4 @@
-import Students from '../models/alunos.js';
+import Students from '../models/Alunos.js';
 
 const getStudents = async (req, res) => {
   try {

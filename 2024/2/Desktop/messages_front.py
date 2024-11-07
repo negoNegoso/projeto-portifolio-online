@@ -4,7 +4,6 @@ from messages_back import Msg
 import os
 
 
-
 # Função para gerar um gradiente entre duas cores
 def gerar_gradiente(canvas, largura, altura, cor1, cor2, steps=100):
     r1, g1, b1 = canvas.winfo_rgb(cor1)  # RGB da cor 1

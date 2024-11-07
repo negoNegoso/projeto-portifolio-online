@@ -39,6 +39,7 @@ class Toplevel1:
 
         # Cria os widgets da tela de cadastro
         self.create_widgets()
+
         
         marca_page_path = os.path.join(os.path.dirname(__file__), 'imgs', 'marca_page.png')
         try:
@@ -277,6 +278,7 @@ class Toplevel1:
         aulas_semanais = self.txt_aulas_semanais.get()
         total_aulas = self.txt_total_aulas.get()
         carga_horaria = self.txt_carga_horaria.get()
+
         ementa = self.txt_ementa.get('1.0', 'end').strip()
         turma = self.combobox_turmaid.get().split(' - ')[0]
         curso = self.combobox_cursoid.get().split(' - ')[0]

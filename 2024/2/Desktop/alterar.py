@@ -1,3 +1,4 @@
+
 import sys
 import os
 import tkinter as tk
@@ -29,6 +30,7 @@ class ToplevelAlterar:
         top.configure(background="#d9d9d9")
 
         self.top = top
+
         
         #canvas gradiente
         self.canvas = tk.Canvas(self.top)
@@ -48,6 +50,7 @@ class ToplevelAlterar:
         self.TFrame1 = tk.Frame(self.top, bg="white")
         self.TFrame1.place(relx=0.179, rely=0.228, relheight=0.581, relwidth=0.605)
         self.TFrame1.configure(relief='groove', borderwidth="2")
+
         
 
         # Carrega a imagem e coloca no frame central
@@ -59,10 +62,12 @@ class ToplevelAlterar:
 
             label_img = tk.Label(self.TFrame1, image=img_marca_page_tk, bg="white")
             label_img.image = img_marca_page_tk  
+
             label_img.place(relx=0.05, y=0.0, anchor=tk.N)  
         except Exception as e:
             print(f"Erro ao carregar a imagem marca_page.png: {e}")
             print(f"Tentando carregar imagem de: {marca_page_path}")
+
 
         #Funão para verificar se os caracteres são numeros
         def validate_number(P):
@@ -76,10 +81,12 @@ class ToplevelAlterar:
         self.txt_disciplina = ttk.Entry(self.TFrame1)
         self.txt_disciplina.place(relx=0.121, rely=0.131, relheight=0.055, relwidth=0.3)
 
+
         self.label_sigla = tk.Label(self.TFrame1, text='Sigla:', font="Montserrat 8", bg="white", fg="#2C5FA3")
         self.label_sigla.place(relx=0.121, rely=0.235, height=21, width=35)
         self.txt_sigla = ttk.Entry(self.TFrame1)
         self.txt_sigla.place(relx=0.121, rely=0.287, relheight=0.055, relwidth=0.3)
+
 
         self.label_aulas_semanais = tk.Label(self.TFrame1, text='Aulas Semanais:', font="Montserrat 8", bg="white", fg="#2C5FA3")
         self.label_aulas_semanais.place(relx=0.121, rely=0.392)
@@ -146,6 +153,7 @@ class ToplevelAlterar:
 
         self.divisoria = tk.Frame(self.TFrame1, bg="#2C5FA3")
         self.divisoria.place(relx=0.5, rely=0.5, relwidth=0.005, relheight=1, anchor=tk.CENTER)
+
 
         #fechar programa
         def fechar_programa():
@@ -243,6 +251,7 @@ class ToplevelAlterar:
         except Exception as e:
             print(f"Erro ao carregar a imagem logo.png: {e}")
             print(f"Tentando carregar imagem de: {logo_path}")
+
 
     def formatar_carga_horaria(self, carga_horaria):
         """
