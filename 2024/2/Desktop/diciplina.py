@@ -2,7 +2,6 @@ import tkinter as tk
 import requests
 from tkinter import messagebox
 import subprocess
-
 # Função para criar gradiente dentro de um canvas
 def create_gradient(canvas, width, height, color1, color2):
     for i in range(height):
