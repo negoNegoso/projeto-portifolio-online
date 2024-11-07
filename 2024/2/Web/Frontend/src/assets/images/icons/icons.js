@@ -19,6 +19,17 @@ import arrowRight from './icon-arrow-right.png';
 import students from './students.png';
 import notas from './notas.png';
 import arrowDown from './icon-arrow-down.png';
+import dashBoard from  './dashboard.png';
+import professor from './professor.png';
+import aluno from './aluno.png';
+import search from './search.png';
+import trash from './del.png';
+import edit from './edit.png';
+import arrow from './right-arrow.png';
+import backArrow from './back-arrow.png';
+import downArrow from './down-arrow.png';
+import calendars from './calendar.png';
+import userEmpty from './user-empty.png';
 
 const icons = {
   book: {
@@ -105,6 +116,50 @@ const icons = {
     src: arrowDown,
     alt: 'arrow down icon',
   },
+  dashBoard: {
+    src: dashBoard,
+    alt: 'dashboard',
+  },
+  professor: {
+    src: professor,
+    alt: 'professor',
+  },
+  aluno: {
+    src: aluno,
+    alt: 'aluno'
+  },
+  search: {
+    src: search,
+    alt: 'search'
+  },
+  edit: {
+    src: edit,
+    alt: 'edit'
+  },
+  trash: {
+    src: trash,
+    alt: 'delete'
+  },
+  arrow: {
+    src: arrow,
+    alt: 'arrow'
+  },
+  backArrow: {
+    src: backArrow,
+    alt: 'backArrow'
+  },
+  downArrow: {
+    src: downArrow,
+    alt: 'downArrow'
+  },
+  calendars: {
+    src: calendars,
+    alt: 'calendars'
+  },
+  userEmpty: {
+    src: userEmpty,
+    alt: 'userEmpty'
+  }
 };
 
 export default icons;
