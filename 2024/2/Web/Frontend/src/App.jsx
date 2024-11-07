@@ -8,8 +8,9 @@ import RollCall from './pages/Professor/RollCall/RollCall';
 import Students from './pages/Professor/Studants/Students';
 import Grade from './pages/Student/Query/Grade/Grade';
 import Class from './pages/Student/Query/Class/Class';
-import Registrations from './pages/Secretaria/Matriculas/Matriculas';
-import InfoGeral from './pages/Secretaria/InfoGeral/InfoGeral';
+import Registrations from './pages/Secretaria/Registers/Register';
+import Information from './pages/Secretaria/Informations/Informations';
+import Information2 from './pages/Secretaria/Informations/Informations2';
 
 const App = () => {
   return (
@@ -24,8 +25,9 @@ const App = () => {
         <Route path="/professor/students" element={<Students />} />
         <Route path="/student/query/grade" element={<Grade />} />
         <Route path="/student/query/class" element={<Class />} />
-        <Route path="/secretaria/matriculas" element={<Registrations />} />
-        <Route path="/secretaria/infoGeral" element={<InfoGeral />} />
+        <Route path="/secretaria/register" element={<Registrations />} />
+        <Route path="/secretaria/generalInfo" element={<Information />} />
+        <Route path="/secretaria/personalInfo" element={<Information2 />} />
       </Routes>
     </BrowserRouter>
   );

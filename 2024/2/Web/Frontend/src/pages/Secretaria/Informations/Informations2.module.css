@@ -19,8 +19,8 @@ body {
 
 .back {
   position: absolute;
-  left: 25rem;
-  top: 63px;
+  left: 22rem;
+  top: 36px;
 }
 
 .homeContainer {
@@ -80,7 +80,7 @@ body {
   border-radius: 7px;
   box-shadow: 0 0px 8px #0000001a;
   width: 103%;
-  height: 148%;
+  height: 219%;
 }
 
 .cardTitle {
@@ -144,11 +144,17 @@ body {
 }
 
 .basicinfo > label {
-  font-size: 19px;
+  font-size: 16px;
+}
+
+.lblName {
+  left: 0rem;
+  top: -1.5rem;
+  position: relative;
 }
 
 .inpNam {
-  width: 500px;
+  width: 312px;
   padding-right: 10px;
   padding-left: 10px;
   height: 50px;
@@ -157,12 +163,14 @@ body {
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
+  top: -1.405rem;
+  position: relative;
 }
 
 .inpIcon {
   position: absolute;
-  left: 460px;
-  top: 25%;
+  left: 272px;
+  top: 9%;
   transform: translateY(-50%);
   width: 30px;
   height: 30px;
@@ -177,25 +185,31 @@ body {
   font-size: 16px;
   outline: none;
   border: 1px solid #ccc;
-  margin-left: 35rem;
-  margin-top: -4.9rem;
+  left: 22rem;
+  top: 0.1rem;
   position: absolute;
   color: #ccc;
 }
 
 .inpIcon2 {
   position: absolute;
-  left: 960px;
-  top: 23%;
+  left: 761px;
+  top: 9%;
   transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   z-index: 10;
 }
 
+.datAdm {
+  left: 0rem;
+  top: -31px;
+  position: relative;
+}
+
 .lblMat {
-  left: 35rem;
-  top: -5rem;
+  left: 22rem;
+  top: -6.2rem;
   position: relative;
 }
 
@@ -209,33 +223,134 @@ body {
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
+  position: relative;
+  top: -23px;
 }
 
 .inpFre {
   width: 250px;
   padding-right: 10px;
   padding-left: 10px;
-  height: 50px;
+  height: 52px;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
-  left: 19.6rem;
+  left: 18.6rem;
+  top: 99px;
   position: absolute;
 }
 
 .fre {
-  margin-left: 19.8rem;
-  margin-top: -79px;
+  left: 18.8rem;
+  top: -105px;
+  position: relative;
 }
 
 .sta {
-  margin-left: 37.8rem;
-  margin-top: -30px;
+  left: 37.8rem;
+  top: -128px;
+  position: relative;
 }
 
 .sts {
+  width: 197px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 53px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+  left: 37.6rem;
+  position: absolute;
+  top: 99px;
+}
+
+.indicatioName {
+  color: #f66b0e;
+  position: relative;
+  top: -19.8rem;
+  left: 15.4rem;
+}
+
+.normalName {
+  color: #233058;
+  position: relative;
+  left: 0.5rem;
+  top: -16.8rem;
+}
+
+.indicationline {
+  background-color: #f66b0e;
+  height: 5px;
+  width: 194px;
+  position: relative;
+  top: -19.8rem;
+  left: 14.7rem;
+  z-index: 1;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #233058;
+  position: relative;
+  top: -16.7rem;
+}
+
+.lblRg {
+  font-size: 18px;
+  position: relative;
+  top: -17.1rem;
+  left: 0.5rem;
+}
+
+.lblCpf {
+  font-size: 18px;
+  position: relative;
+  top: -21.8rem;
+  left: 21.5rem;
+}
+
+.lblgen {
+  font-size: 18px;
+  position: relative;
+  top: -24.1rem;
+  left: 0.5rem;
+}
+
+.lblTelefone {
+  font-size: 18px;
+  position: relative;
+  top: -28.8rem;
+  left: 21.5rem;
+}
+
+.lblEnd {
+  font-size: 18px;
+  position: relative;
+  top: -33.65rem;
+  left: 42.5rem;
+}
+
+.lblEma {
+  font-size: 18px;
+  position: relative;
+  top: -31.65rem;
+  left: 0.5rem;
+}
+
+.datNasc {
+  font-size: 18px;
+  top: -26.7rem;
+  left: 42.4rem;
+  position: relative;
+}
+
+.rg {
   width: 300px;
   padding-right: 10px;
   padding-left: 10px;
@@ -245,58 +360,13 @@ body {
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
-  left: 37.6rem;
-  position: absolute;
-}
-
-.indicatioName {
-  color: #f66b0e;
   position: relative;
-  top: -12.5rem;
+  top: -17rem;
+  left: 0.5rem;
 }
 
-.normalName {
-  color: #233058;
-  position: relative;
-  left: 15.5rem;
-  top: -15.8rem;
-}
-
-.indicationline {
-  background-color: #f66b0e;
-  height: 5px;
-  width: 210px;
-  position: relative;
-  top: -12.5rem;
-  z-index: 1;
-}
-
-.line {
-  width: 100%;
-  height: 1px;
-  background-color: #233058;
-  position: relative;
-  top: -12.7rem;
-}
-
-.lblcurso {
-  font-size: 22px;
-  margin-top: -14.5rem;
-}
-
-.lblturma {
-  font-size: 22px;
-  margin-top: 0.9rem;
-}
-
-.lblmaterias{
-  font-size: 22px;
-  margin-top: -10.6rem;
-  margin-left: 40rem;
-}
-
-.curso {
-  width: 500px;
+.cpf {
+  width: 300px;
   padding-right: 10px;
   padding-left: 10px;
   height: 50px;
@@ -305,10 +375,13 @@ body {
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
+  position: relative;
+  top: -21.8rem;
+  left: 21.5rem;
 }
 
-.turma {
-  width: 500px;
+.inpDat {
+  width: 300px;
   padding-right: 10px;
   padding-left: 10px;
   height: 50px;
@@ -317,37 +390,83 @@ body {
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
+  position: relative;
+  top: -26.4rem;
+  left: 42.5rem;
 }
 
-.inparea{
-  width: 500px;
+.gen {
+  width: 300px;
   padding-right: 10px;
   padding-left: 10px;
-  padding-top: 40px;
-  height: 160px;
+  height: 50px;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
   border: 1px solid #ccc;
   color: #ccc;
-  text-align: justify;
-  left: 67.5rem;
-  position: absolute;
-  top: 35rem;
+  position: relative;
+  top: -23.88rem;
+  left: 0.5rem;
 }
 
+.telefone {
+  width: 300px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+  position: relative;
+  top: -28.7rem;
+  left: 21.5rem;
+}
 
-.btnSalvar{
+.endereco {
+  width: 300px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+  position: relative;
+  top: -33.5rem;
+  left: 42.5rem;
+}
+
+.email {
+  width: 970px;
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+  position: relative;
+  top: -31.2rem;
+  left: 0.5rem;
+}
+
+.btnSalvar {
   background-color: #f66b0e;
   color: #f2f2f2;
   position: absolute;
-  bottom: 2.9rem;
+  bottom: -11.2rem;
+  left: 24rem;
 }
 
-.btnCancelar{
-  background-color: #F66B0E33;
+.btnCancelar {
+  background-color: #f66b0e33;
   color: #f66b0e;
   position: absolute;
-  bottom: 2.9rem;
-  left: 34rem;
+  bottom: -11.2rem;
+  left: 30.5rem;
 }

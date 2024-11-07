@@ -74,7 +74,7 @@ body {
   border-radius: 7px;
   box-shadow: 0 0px 8px #0000001a;
   width: 103%;
-  height: 128%;
+  height: 143%;
 }
 
 .cardTitle {
@@ -131,7 +131,7 @@ body {
 }
 
 .selectCurso {
-  width: 22%;
+  width: 18%;
   height: 7%;
   font-family: nunito;
   font-size: 1.15rem;
@@ -139,7 +139,7 @@ body {
   border-radius: 10px;
   background-color: #f2f2f2;
   color: #636d76;
-  margin-left: 40rem;
+  margin-left: 38rem;
   outline: none;
   margin-top: -73px;
   position: absolute;
@@ -147,14 +147,14 @@ body {
 
 .matricularButton {
   width: 179px;
-  height: 55px;
+  height: 49px;
   background-color: #3c5874;
   color: #eceaea;
   font-size: 20px;
   border-radius: 30px;
   padding-top: 13px;
   padding-left: 22px;
-  margin-left: 67rem;
+  left: 80rem;
   border: none;
   margin-top: -4.5rem;
   position: absolute;
@@ -285,7 +285,7 @@ span {
 .pages {
   display: flex;
   align-items: center;
-  margin-left: 68.2rem;
+  margin-left: 59.2rem;
   margin-top: -30px;
 }
 

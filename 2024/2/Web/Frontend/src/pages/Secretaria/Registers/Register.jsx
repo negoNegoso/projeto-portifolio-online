@@ -1,7 +1,7 @@
 import Menu from '../../../components/Secretaria/Menu/Menu';
 import Panel from '../../../components/Panel/Panel';
 import icons from '../../../assets/images/icons/icons';
-import styles from './Matriculas.module.css';
+import styles from './Register.module.css';
 
 const Registrations = () => {
   return (
