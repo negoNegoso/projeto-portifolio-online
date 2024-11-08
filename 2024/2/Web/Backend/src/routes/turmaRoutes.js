@@ -30,7 +30,7 @@ router.get('/', getTurmas);
 
 /**
  * @swagger
- * /create-turma:
+ * /turmas:
  *   post:
  *     summary: Cria uma nova turma
  *     tags: [Turmas]
@@ -65,7 +65,7 @@ router.post('/', turmaSchema, validateSchema, createTurma);
 
 /**
  * @swagger
- * /get-turma/{id}:
+ * /turmas/{id}:
  *   get:
  *     summary: Obtém uma turma pelo ID
  *     tags: [Turmas]
@@ -88,7 +88,7 @@ router.get('/:id', getTurmaById);
 
 /**
  * @swagger
- * /update-turma/{id}:
+ * /turmas/{id}:
  *   put:
  *     summary: Atualiza uma turma pelo ID
  *     tags: [Turmas]
@@ -132,7 +132,7 @@ router.put('/:id', turmaSchema, validateSchema, updateTurma);
 
 /**
  * @swagger
- * /delete-turma/{id}:
+ * /turmas/{id}:
  *   delete:
  *     summary: Exclui uma turma pelo ID
  *     tags: [Turmas]
