@@ -34,12 +34,12 @@ const Login = () => {
         <img src={logos.blue.src} alt={logos.blue.alt} id={styles.logo} />
         <div className={styles.content}>
           <div className={styles.loginTitle}>
-            <h1>Portal do Aluno</h1>
+            <h1>Portal de Acesso</h1>
             <p>Faça o login para acessar a sua conta</p>
           </div>
           <div className={styles.loginOption}>
             <div className={styles.option}>
-              <input type="radio" name="option" value="student" />
+              <input type="radio" name="option" value="student" checked />
               <span>Aluno</span>
             </div>
             <div className={styles.option}>
@@ -49,8 +49,22 @@ const Login = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputGroup}>
-              {errors.email && errors.password && (
-                <p style={{ color: 'red', whiteSpace: 'nowrap' }}>Email ou senha incorreto. Tente novamente!</p>
+              {(errors.email || errors.password) && (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <img
+                    src={icons.error.src}
+                    alt={icons.error.alt}
+                    style={{ height: '30px', margin: '33px 10px 0px 0px' }}
+                  />
+                  <p style={{ color: 'red', whiteSpace: 'nowrap', margin: '32px 0px 16px 0px' }}>
+                    Email ou senha incorreto. Tente novamente!
+                  </p>
+                </div>
               )}
               <img
                 src={errors.email ? icons.emailRed.src : icons.email.src}
@@ -80,7 +94,9 @@ const Login = () => {
               Entrar
             </button>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <div style={{ minHeight: '20px', marginTop: '10px', visibility: error ? 'visible' : 'hidden' }}>
+              <p style={{ color: 'red' }}>{error}</p>
+            </div>
           </form>
         </div>
       </div>
