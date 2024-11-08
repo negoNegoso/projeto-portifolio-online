@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Subject = sequelize.define(
-  'Materia',
+  'materias',
   {
     id_materia: {
       type: DataTypes.BIGINT,
@@ -28,6 +28,10 @@ const Subject = sequelize.define(
     },
     id_curso: {
       type: DataTypes.BIGINT,
+      references: {
+        model: 'curso',
+        key: 'id_curso'
+      }
     },
   },
   {
