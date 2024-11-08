@@ -7,6 +7,8 @@ import {
   deleteUser,
   loginUser,
 } from '../controllers/usuarioController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import usuarioSchema from '../schemas/usuarioSchema.js';
 
 const router = express.Router();
 
@@ -29,7 +31,7 @@ const router = express.Router();
  *       500:
  *         description: Erro ao obter os usuários
  */
-router.get('/usuarios', getUsers);
+router.get('/', getUsers);
 
 /**
  * @swagger
@@ -64,7 +66,7 @@ router.get('/usuarios', getUsers);
  *       500:
  *         description: Erro ao criar o usuário
  */
-router.post('/usuarios', createUser);
+router.post('/', usuarioSchema, validateSchema, createUser);
 
 /**
  * @swagger
@@ -87,7 +89,7 @@ router.post('/usuarios', createUser);
  *       500:
  *         description: Erro ao buscar o usuário
  */
-router.get('/usuarios/:id', getUserById);
+router.get('/:id', getUserById);
 
 /**
  * @swagger
@@ -129,7 +131,7 @@ router.get('/usuarios/:id', getUserById);
  *       500:
  *         description: Erro ao atualizar o usuário
  */
-router.put('/usuarios/:id', updateUser);
+router.put('/:id', usuarioSchema, validateSchema, updateUser);
 
 /**
  * @swagger
@@ -152,7 +154,7 @@ router.put('/usuarios/:id', updateUser);
  *       500:
  *         description: Erro ao excluir o usuário
  */
-router.delete('/usuarios/:id', deleteUser);
+router.delete('/:id', deleteUser);
 
 /**
  * @swagger
@@ -179,7 +181,7 @@ router.delete('/usuarios/:id', deleteUser);
  *       500:
  *         description: Erro ao realizar o login
  */
-router.post('/usuarios/login', loginUser);
+router.post('/login', loginUser);
 
 
 /**

@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Permissions = sequelize.define(
-  'Permissoes',
+  'permissoes',
   {
     id_permissao: {
       type: DataTypes.BIGINT,

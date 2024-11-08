@@ -7,6 +7,8 @@ import {
   deleteCourse,
 } from '../controllers/cursoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import cursoSchema from '../schemas/cursoSchema.js';
 
 const router = express.Router();
 
@@ -19,7 +21,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/cursos:
+ * /cursos:
  *   get:
  *     summary: Retorna todos os cursos
  *     tags: [Cursos]
@@ -33,11 +35,11 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Cursos'
  */
-router.get('/cursos', getCourses);
+router.get('/',  getCourses);
 
 /**
  * @swagger
- * /api/cursos:
+ * /cursos:
  *   post:
  *     summary: Cria um novo curso
  *     tags: [Cursos]
@@ -57,11 +59,11 @@ router.get('/cursos', getCourses);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/cursos', createCourse);
+router.post('/', cursoSchema, validateSchema, createCourse);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   get:
  *     summary: Retorna um curso pelo ID
  *     tags: [Cursos]
@@ -82,11 +84,11 @@ router.post('/cursos', createCourse);
  *       404:
  *         description: Curso não encontrado
  */
-router.get('/cursos/:id', getCourseById);
+router.get('/:id', getCourseById);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   put:
  *     summary: Atualiza um curso pelo ID
  *     tags: [Cursos]
@@ -113,11 +115,11 @@ router.get('/cursos/:id', getCourseById);
  *       404:
  *         description: Curso não encontrado
  */
-router.put('/cursos/:id', updateCourse);
+router.put('/:id', cursoSchema, validateSchema, updateCourse);
 
 /**
  * @swagger
- * /api/cursos/{id}:
+ * /cursos/{id}:
  *   delete:
  *     summary: Deleta um curso pelo ID
  *     tags: [Cursos]
@@ -134,7 +136,7 @@ router.put('/cursos/:id', updateCourse);
  *       404:
  *         description: Curso não encontrado
  */
-router.delete('/cursos/:id', deleteCourse);
+router.delete('/:id', deleteCourse);
 
 /**
  * @swagger

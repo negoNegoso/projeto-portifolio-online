@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Classes = sequelize.define(
-  'Turmas',
+  'turmas',
   {
     id_turma: {
       type: DataTypes.BIGINT,

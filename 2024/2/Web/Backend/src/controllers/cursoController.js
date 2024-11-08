@@ -1,5 +1,3 @@
-// ./controllers/cursoController.js
-
 import Courses from '../models/Cursos.js';
 import { handleError, response } from '../Utils/Utils.js';
 
