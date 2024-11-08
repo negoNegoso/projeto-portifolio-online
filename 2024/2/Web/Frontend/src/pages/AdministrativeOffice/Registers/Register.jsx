@@ -1,4 +1,4 @@
-import Menu from '../../../components/Secretaria/Menu/Menu';
+import Menu from '../../../components/AdministrativeOffice/Menu/Menu';
 import Panel from '../../../components/Panel/Panel';
 import icons from '../../../assets/images/icons/icons';
 import styles from './Register.module.css';

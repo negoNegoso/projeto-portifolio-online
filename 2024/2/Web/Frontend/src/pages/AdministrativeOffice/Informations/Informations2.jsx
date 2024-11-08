@@ -1,10 +1,10 @@
-import Menu from '../../../components/Secretaria/Menu/Menu';
+import Menu from '../../../components/AdministrativeOffice/Menu/Menu';
 import Panel from '../../../components/Panel/Panel';
 import icons from '../../../assets/images/icons/icons';
 import image from '../../../assets/images/general/general';
-import styles from './Informations.module.css';
+import styles from './Informations2.module.css';
 
-const GeneralInfo = () => {
+const PersonalInfo = () => {
   return (
     <div className={styles.homeContainer}>
       <Menu />
@@ -36,29 +36,31 @@ const GeneralInfo = () => {
                 </select>
               </form>
               <div className={styles.indication}>
-                <h2 className={styles.indicatioName}>Informações Gerais</h2>
-                <div className={styles.indicationline}></div>
+                <h2 className={styles.normalName}>Informações Gerais</h2>
               </div>
               <div className={styles.line}></div>
-              <h2 className={styles.normalName}>Dados Pessoais</h2>
+              <h2 className={styles.indicatioName}>Dados Pessoais</h2>
+              <div className={styles.indicationline}></div>
 
               <form className={styles.geral}>
-                <label className={styles.lblcurso}>Curso</label>
-                <input
-                  type="text"
-                  placeholder="DSM - Desenvolvimento de Software Multiplataforma"
-                  className={styles.curso}
-                  disabled
-                />
-                <label className={styles.lblturma}>Turma</label>
-                <input type="text" placeholder="3º Semestre" className={styles.turma} disabled />
-                <label className={styles.lblmaterias}>Matérias</label>
-                <textarea
-                  className={styles.inparea}
-                  rows="2"
-                  cols="50"
-                  placeholder="3DSM - Gestão Agil de Projetos de Software, Banco de Dados não Relacional, Interação Humano Computador, Tecnica de Programação II, Ingles I, Desenvolvimento Web III, Álgebra Linear"
-                ></textarea>
+                <label className={styles.lblRg}>RG</label>
+                <input type="text" placeholder="RG" className={styles.rg} disabled />
+                <label className={styles.lblCpf}>CPF</label>
+                <input type="text" placeholder="CPF" className={styles.cpf} disabled />
+                <label className={styles.datNasc}>Data de Nascimento</label>
+                <input type="date" className={styles.inpDat} disabled />
+                <label className={styles.lblgen}>Gênero</label>
+                <select className={styles.gen} disabled>
+                  <option value="Gênero">Gênero</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                </select>
+                <label className={styles.lblTelefone}>Telefone</label>
+                <input type="text" placeholder="Telefone" className={styles.telefone} disabled />
+                <label className={styles.lblEnd}>Endereço</label>
+                <input type="text" placeholder="Endereço" className={styles.endereco} disabled />
+                <label className={styles.lblEma}>Email Institucional</label>
+                <input type="text" placeholder="Email" className={styles.email} disabled />
                 <button className={styles.btnSalvar}>Salvar</button>
                 <button className={styles.btnCancelar}>Cancelar</button>
               </form>
@@ -70,4 +72,4 @@ const GeneralInfo = () => {
   );
 };
 
-export default GeneralInfo;
+export default PersonalInfo;
