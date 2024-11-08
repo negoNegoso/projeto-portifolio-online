@@ -5,8 +5,11 @@ import {
   getStudentById,
   updateStudent,
   deleteStudent,
+  login,
 } from '../controllers/alunoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import alunoSchema from '../schemas/alunoSchema.js';
 
 const router = express.Router();
 
@@ -19,7 +22,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/alunos:
+ * /alunos:
  *   get:
  *     summary: Retorna todos os alunos
  *     tags: [Alunos]
@@ -33,11 +36,11 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Alunos'
  */
-router.get('/alunos', getStudents);
+router.get('/', getStudents);
 
 /**
  * @swagger
- * /api/alunos:
+ * /alunos:
  *   post:
  *     summary: Cria um novo aluno
  *     tags: [Alunos]
@@ -57,11 +60,11 @@ router.get('/alunos', getStudents);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/alunos', createStudent);
+router.post('/', alunoSchema, validateSchema, createStudent);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   get:
  *     summary: Retorna um aluno pelo ID
  *     tags: [Alunos]
@@ -82,11 +85,11 @@ router.post('/alunos', createStudent);
  *       404:
  *         description: Aluno não encontrado
  */
-router.get('/alunos/:id', getStudentById);
+router.get('/:id', getStudentById);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   put:
  *     summary: Atualiza um aluno pelo ID
  *     tags: [Alunos]
@@ -113,11 +116,11 @@ router.get('/alunos/:id', getStudentById);
  *       404:
  *         description: Aluno não encontrado
  */
-router.put('/alunos/:id', updateStudent);
+router.put('/:id', alunoSchema, validateSchema, updateStudent);
 
 /**
  * @swagger
- * /api/alunos/{id}:
+ * /alunos/{id}:
  *   delete:
  *     summary: Deleta um aluno pelo ID
  *     tags: [Alunos]
@@ -134,8 +137,34 @@ router.put('/alunos/:id', updateStudent);
  *       404:
  *         description: Aluno não encontrado
  */
-router.delete('/alunos/:id', deleteStudent);
+router.delete('/:id', deleteStudent);
 
+/**
+ * @swagger
+ * /alunos/login:
+ *   post:
+ *     summary: Realiza o login de um aluno
+ *     tags: [Alunos]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               senha:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *       401:
+ *         description: Credenciais inválidas
+ *       500:
+ *         description: Erro ao realizar o login
+ */
+router.post('/login', login);
 
 /**
  * @swagger

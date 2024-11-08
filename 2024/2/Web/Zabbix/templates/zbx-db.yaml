@@ -1,0 +1,20 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 748ad4d098d447d492bb935c907f652f
+      name: Templates/Databases
+  templates:
+    - uuid: be1edb1c00c74473a7b437504e80b341
+      template: 'Zabbix DB'
+      name: 'Zabbix DB'
+      templates:
+        - name: 'PostgreSQL by Zabbix agent 2'
+      groups:
+        - name: Templates/Databases
+      macros:
+        - macro: '{$PG.CONNSTRING.AGENT2}'
+          value: 'postgresql://praxis_db:5432'
+        - macro: '{$PG.DATABASE}'
+          value: praxis
+        - macro: '{$PG.PASSWORD}'
+          value: zabbix

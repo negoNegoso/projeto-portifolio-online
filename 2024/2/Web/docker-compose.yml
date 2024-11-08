@@ -1,0 +1,124 @@
+services:
+  postgres:
+    container_name: praxis_db
+    build: 
+      context: ./Postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    networks:
+      - zabbix-net
+    ports:
+      - "5432:5432"
+  backend:
+    build: 
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: praxis-backend-api
+    ports:
+      - "3000:3000"
+    environment:
+      PG_DB: ${PG_DB}
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
+      PORT: ${PORT}
+    networks:
+      - zabbix-net
+    depends_on:
+      - postgres
+  frontend:
+    build: 
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: praxis-frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - zabbix-net
+  zabbix-snmptraps:
+    image: zabbix/zabbix-snmptraps:alpine-7.0-latest
+    container_name: zabbix-snmptraps
+    networks:
+      - zabbix-net
+    ports:
+      - "162:1162/udp"
+    restart: unless-stopped
+  zabbix-sql-server:
+    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
+    container_name: zabbix-server-pgsql
+    environment:
+      DB_SERVER_HOST: praxis_db
+      DB_SERVER_PORT: ${PG_PORT}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+      ZBX_ENABLE_SNMP_TRAPS: "true"
+    networks:
+      - zabbix-net
+    ports:
+      - "10051:10051"
+    restart: unless-stopped
+  zabbix-web-apache:
+    image: zabbix/zabbix-web-apache-pgsql:alpine-7.0-latest
+    container_name: zabbix-web-apache
+    environment:
+      ZBX_SERVER_HOST: zabbix-server-pgsql
+      DB_SERVER_HOST: praxis_db
+      DB_SERVER_PORT: ${PG_PORT}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    ports:
+      - "8080:8080"
+    networks:
+      - zabbix-net
+    depends_on:
+      - postgres  
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-7.0-latest
+    container_name: zabbix-agent
+    environment:
+      ZBX_SERVER_HOST: zabbix-server-pgsql
+      ZBX_HOSTNAME: "Zabbix server"
+    links:
+      - zabbix-sql-server:zabbix-sql-server
+    networks:
+      - zabbix-net
+    ports:
+      - "10050:10050"
+    depends_on:
+      - zabbix-sql-server
+  zabbix-agent-db:
+    image: zabbix/zabbix-agent2:alpine-7.0-latest
+    container_name: zabbix-agent-db
+    environment:
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
+      ZBX_SERVER_HOST: zabbix-server-pgsql
+    links:
+      - zabbix-sql-server:zabbix-sql-server
+    networks:
+      - zabbix-net
+    ports:
+      - "10052:10050"
+    depends_on:
+      - zabbix-sql-server
+  zabbix-scripts:
+    build:
+      context: ./Zabbix
+      dockerfile: Dockerfile
+    container_name: zabbix-scripts
+    networks:
+      - zabbix-net
+    depends_on:
+      - zabbix-sql-server
+      - zabbix-agent-db
+      - zabbix-agent
+networks:
+  zabbix-net:
+    driver: bridge
+
