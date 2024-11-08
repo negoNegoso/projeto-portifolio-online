@@ -16,7 +16,11 @@ const login = async (email, senha) => {
       throw new Error('senha incorreta.');
     }
 
-    const token = jwt.sign({ id: usuario.id_usuario }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: usuario.id_usuario, role: usuario.tipo_usuario },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
     return { usuario, token };
   } catch (error) {
