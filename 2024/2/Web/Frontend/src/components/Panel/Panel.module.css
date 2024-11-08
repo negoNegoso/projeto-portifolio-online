@@ -8,15 +8,15 @@
   align-items: center;
   font-size: 1.4rem;
   color: #677c91;
-  padding-left: 50px;
+  padding-left: 25px;
   justify-content: space-between;
 }
 
 .homeHeaderText > h1 {
   margin-top: 24px;
+  font-weight: bold;
   font-size: 1.6rem;
   color: #2c3e50;
-  margin-left: 58px;
 }
 
 .homeLogo {
@@ -26,5 +26,4 @@
 
 .sec {
   font-size: 16px;
-  margin-left: 58px;
 }

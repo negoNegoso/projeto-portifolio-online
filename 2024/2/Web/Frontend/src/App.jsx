@@ -8,9 +8,10 @@ import RollCall from './pages/Professor/RollCall/RollCall';
 import Students from './pages/Professor/Studants/Students';
 import Grade from './pages/Student/Query/Grade/Grade';
 import Class from './pages/Student/Query/Class/Class';
-import Registrations from './pages/Secretaria/Registers/Register';
-import Information from './pages/Secretaria/Informations/Informations';
-import Information2 from './pages/Secretaria/Informations/Informations2';
+import Registrations from './pages/AdministrativeOffice/Registers/Register';
+import Information from './pages/AdministrativeOffice/Informations/Informations';
+import Information2 from './pages/AdministrativeOffice/Informations/Informations2';
+import SchoolReports from './pages/Student/Query/SchoolReport/SchoolReport';
 
 const App = () => {
   return (
@@ -25,9 +26,10 @@ const App = () => {
         <Route path="/professor/students" element={<Students />} />
         <Route path="/student/query/grade" element={<Grade />} />
         <Route path="/student/query/class" element={<Class />} />
-        <Route path="/secretaria/register" element={<Registrations />} />
-        <Route path="/secretaria/generalInfo" element={<Information />} />
-        <Route path="/secretaria/personalInfo" element={<Information2 />} />
+        <Route path="/administrativeOffice/register" element={<Registrations />} />
+        <Route path="/administrativeOffice/generalInfo" element={<Information />} />
+        <Route path="/administrativeOffice/personalInfo" element={<Information2 />} />
+        <Route path="/student/query/schoolReport" element={<SchoolReports />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,127 @@
+@font-face {
+  font-family: nunito;
+  src: url('../../../../assets/fonts/Nunito-Regular.ttf');
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.reportsContainer {
+  top: 0;
+  width: 100vw;
+  background-color: #f2f2f2;
+  display: flex;
+  font-family: nunito;
+}
+
+.reportsMainContent {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 81%;
+  min-height: 100%;
+  background-color: #f2f2f2;
+  margin-left: 19.1%;
+}
+
+.reportsInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.reportsCard {
+  width: 95%;
+  background-color: #fafbff;
+  margin-top: 52px;
+  margin-bottom: 52px;
+  border-radius: 5px;
+
+  padding: 36px;
+}
+
+.reportsCardTitle {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+.reportsCardTitle p {
+  font-size: 32px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.reportsCardTitle hr {
+  background-color: #f66b0e;
+  width: 100%;
+  height: 1.5px;
+  outline: none;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  margin-bottom: 46px;
+}
+
+.reportsCardSemester {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.reportsCardSemester span {
+  font-size: 22px;
+  font-weight: 300;
+  color: #000;
+  display: inline-block;
+}
+
+.reportsCardSemester select {
+  font-size: 18px;
+  font-weight: 300;
+  color: #0c1e33;
+  background-color: #f2f2f2;
+
+  border: none;
+  outline: none;
+
+  border-radius: 6px;
+  width: 170px;
+  padding: 5px 10px;
+}
+
+.reportsCardContent {
+  margin-top: 32px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 46px;
+}
+
+.reportsCardContent .semesterContentCard div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.reportsCardContent .semesterContentCard div span {
+  font-size: 24px;
+  color: #3f3f3f;
+}
