@@ -16,10 +16,11 @@ import user from './icon-user.png';
 import calendar from './icon-calendar.png';
 import arrowLeft from './icon-arrow-left.png';
 import arrowRight from './icon-arrow-right.png';
+import arrowRightDark from './icon-arrow-right-dark.png';
 import students from './students.png';
 import notas from './notas.png';
 import arrowDown from './icon-arrow-down.png';
-import dashBoard from  './dashboard.png';
+import dashBoard from './dashboard.png';
 import professor from './professor.png';
 import aluno from './aluno.png';
 import search from './search.png';
@@ -112,6 +113,10 @@ const icons = {
     src: arrowRight,
     alt: 'arrow right icon',
   },
+  arrowRightDark: {
+    src: arrowRightDark,
+    alt: 'arrow dark right icon',
+  },
   arrowDown: {
     src: arrowDown,
     alt: 'arrow down icon',
@@ -126,40 +131,40 @@ const icons = {
   },
   aluno: {
     src: aluno,
-    alt: 'aluno'
+    alt: 'aluno',
   },
   search: {
     src: search,
-    alt: 'search'
+    alt: 'search',
   },
   edit: {
     src: edit,
-    alt: 'edit'
+    alt: 'edit',
   },
   trash: {
     src: trash,
-    alt: 'delete'
+    alt: 'delete',
   },
   arrow: {
     src: arrow,
-    alt: 'arrow'
+    alt: 'arrow',
   },
   backArrow: {
     src: backArrow,
-    alt: 'backArrow'
+    alt: 'backArrow',
   },
   downArrow: {
     src: downArrow,
-    alt: 'downArrow'
+    alt: 'downArrow',
   },
   calendars: {
     src: calendars,
-    alt: 'calendars'
+    alt: 'calendars',
   },
   userEmpty: {
     src: userEmpty,
-    alt: 'userEmpty'
-  }
+    alt: 'userEmpty',
+  },
 };
 
 export default icons;
