@@ -30,6 +30,7 @@ app.use('/', cursoRoutes);
 app.use('/', gradeRoutes);
 app.use('/', exposedRoutes);
 
+
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
