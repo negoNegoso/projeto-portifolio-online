@@ -1,0 +1,13 @@
+.chartClassContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 2.5rem;
+  background-color: #fbfcff;
+  border-radius: 8px;
+  gap: 2.625rem;
+  width: 73%;
+}
+
+.chartClassTitle {
+  color: #243241;
+}
