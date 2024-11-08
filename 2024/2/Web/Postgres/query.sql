@@ -141,6 +141,26 @@ BEGIN
     END IF;
 END $$;
 
+-- Criar a tabela "Chamadas"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'chamadas') THEN
+        CREATE TABLE Chamadas (
+            id_chamada BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            id_aluno BIGINT REFERENCES Alunos(id_aluno) ON DELETE CASCADE,
+            id_turma BIGINT REFERENCES Turmas(id_turma) ON DELETE SET NULL,
+            id_materia BIGINT REFERENCES Materias(id_materia) ON DELETE CASCADE,
+            data_chamada DATE,
+            presenca BOOLEAN,
+            justificativa TEXT,
+            horario_chamada TIME,
+            observacoes TEXT,
+            updatedAt DATE,
+            createdAt DATE
+        );
+    END IF;
+END $$;
+
 CREATE ROLE user_reading_create
 WITH LOGIN
 PASSWORD 'userreadingcreate';
