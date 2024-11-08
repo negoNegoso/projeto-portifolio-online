@@ -14,16 +14,16 @@ const Grade = sequelize.define(
       allowNull: false,
       references: {
         model: 'materias',
-        key: 'id_materia'
-      }
+        key: 'id_materia',
+      },
     },
     id_aluno: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: 'alunos',
-        key: 'id_aluno'
-      }
+        key: 'id_aluno',
+      },
     },
     nota: {
       type: DataTypes.FLOAT,

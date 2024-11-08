@@ -5,6 +5,7 @@ import {
   getStudentById,
   updateStudent,
   deleteStudent,
+  login,
 } from '../controllers/alunoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import validateSchema from '../middlewares/validateSchema.js';
@@ -137,6 +138,33 @@ router.put('/:id', alunoSchema, validateSchema, updateStudent);
  *         description: Aluno não encontrado
  */
 router.delete('/:id', deleteStudent);
+
+/**
+ * @swagger
+ * /alunos/login:
+ *   post:
+ *     summary: Realiza o login de um aluno
+ *     tags: [Alunos]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               senha:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *       401:
+ *         description: Credenciais inválidas
+ *       500:
+ *         description: Erro ao realizar o login
+ */
+router.post('/login', login);
 
 /**
  * @swagger
