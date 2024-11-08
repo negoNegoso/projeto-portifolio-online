@@ -1,11 +1,5 @@
 import express from 'express';
-import {
-  getCourses,
-  createCourse,
-  getCourseById,
-  updateCourse,
-  deleteCourse,
-} from '../controllers/cursoController.js';
+import { getCourses, createCourse, getCourseById, updateCourse, deleteCourse } from '../controllers/cursoController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import validateSchema from '../middlewares/validateSchema.js';
 import cursoSchema from '../schemas/cursoSchema.js';

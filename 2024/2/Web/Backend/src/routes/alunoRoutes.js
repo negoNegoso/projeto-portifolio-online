@@ -138,7 +138,6 @@ router.put('/:id', alunoSchema, validateSchema, updateStudent);
  */
 router.delete('/:id', deleteStudent);
 
-
 /**
  * @swagger
  * components:
