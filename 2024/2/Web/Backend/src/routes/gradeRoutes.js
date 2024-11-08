@@ -15,13 +15,13 @@ const router = express.Router();
 router.post('/', gradeSchema, validateSchema, createGrade);
 
 // Route para listar notas
-router.get('/', gradeSchema, validateSchema, getAllGrades);
+router.get('/', getAllGrades);
 
 // Route para pegar nota pelo id
 router.get('/:id', getGradeById);
 
 // Route para atualizar nota
-router.put('/:id', updateGrade);
+router.put('/:id', gradeSchema, validateSchema, updateGrade);
 
 // Route para apagar a nota
 router.delete('/:id', deleteGrade);

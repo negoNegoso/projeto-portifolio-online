@@ -12,17 +12,17 @@ import subjectSchema from '../schemas/subjectSchema.js';
 
 const router = express.Router();
 
+// Route para listar materias
+router.get('/', getAllSubjects);
+
 // Criar uma nova matéria
 router.post('/', subjectSchema, validateSchema, createSubject);
-
-// Route para listar materias
-router.get('/', subjectSchema, validateSchema, getAllSubjects);
 
 // Route para pegar materia pelo id
 router.get('/:id', getSubjectById);
 
 // Route para atualizar materia
-router.put('/:id', updateSubject);
+router.put('/:id', subjectSchema, validateSchema, updateSubject);
 
 // Route para apagar a materia
 router.delete('/:id', deleteSubject);

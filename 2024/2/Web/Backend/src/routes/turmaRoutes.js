@@ -25,7 +25,7 @@ const router = express.Router();
  *       500:
  *         description: Erro ao obter as turmas
  */
-router.get('/turmas', turmaSchema, validateSchema, getTurmas);
+router.get('/', getTurmas);
 
 
 /**
@@ -61,7 +61,7 @@ router.get('/turmas', turmaSchema, validateSchema, getTurmas);
  *       500:
  *         description: Erro ao criar a turma
  */
-router.post('/create-turma', turmaSchema, validateSchema, createTurma);
+router.post('/', turmaSchema, validateSchema, createTurma);
 
 /**
  * @swagger
@@ -84,7 +84,7 @@ router.post('/create-turma', turmaSchema, validateSchema, createTurma);
  *       500:
  *         description: Erro ao buscar a turma
  */
-router.get('/get-turma/:id', getTurmaById);
+router.get('/:id', getTurmaById);
 
 /**
  * @swagger
@@ -128,7 +128,7 @@ router.get('/get-turma/:id', getTurmaById);
  *       500:
  *         description: Erro ao atualizar a turma
  */
-router.put('/update-turma/:id', updateTurma);
+router.put('/:id', turmaSchema, validateSchema, updateTurma);
 
 /**
  * @swagger
@@ -151,7 +151,7 @@ router.put('/update-turma/:id', updateTurma);
  *       500:
  *         description: Erro ao excluir a turma
  */
-router.delete('/delete-turma/:id', deleteTurma);
+router.delete('/:id', deleteTurma);
 
 /**
  * @swagger

@@ -35,7 +35,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Cursos'
  */
-router.get('/cursos', cursoSchema, validateSchema,  getCourses);
+router.get('/',  getCourses);
 
 /**
  * @swagger
@@ -59,7 +59,7 @@ router.get('/cursos', cursoSchema, validateSchema,  getCourses);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/cursos', cursoSchema, validateSchema, createCourse);
+router.post('/', cursoSchema, validateSchema, createCourse);
 
 /**
  * @swagger
@@ -84,7 +84,7 @@ router.post('/cursos', cursoSchema, validateSchema, createCourse);
  *       404:
  *         description: Curso não encontrado
  */
-router.get('/cursos/:id', getCourseById);
+router.get('/:id', getCourseById);
 
 /**
  * @swagger
@@ -115,7 +115,7 @@ router.get('/cursos/:id', getCourseById);
  *       404:
  *         description: Curso não encontrado
  */
-router.put('/cursos/:id', updateCourse);
+router.put('/:id', cursoSchema, validateSchema, updateCourse);
 
 /**
  * @swagger
@@ -136,7 +136,7 @@ router.put('/cursos/:id', updateCourse);
  *       404:
  *         description: Curso não encontrado
  */
-router.delete('/cursos/:id', deleteCourse);
+router.delete('/:id', deleteCourse);
 
 /**
  * @swagger

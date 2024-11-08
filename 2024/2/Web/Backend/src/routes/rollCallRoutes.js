@@ -11,10 +11,10 @@ import rollCallSchema from '../schemas/rollCallSchema.js';
 
 const router = express.Router();
 
-router.get('/', rollCallSchema, validateSchema, getRollCall);
+router.get('/', getRollCall);
 router.post('/', rollCallSchema, validateSchema, createRollCall);
 router.get('/:id', getRollCallById);
-router.put('/:id', updateRollCall);
+router.put('/:id', rollCallSchema, validateSchema, updateRollCall);
 router.delete('/:id', deleteRollCall);
 
 export default router;

@@ -35,7 +35,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Alunos'
  */
-router.get('/alunos', getStudents);
+router.get('/', getStudents);
 
 /**
  * @swagger
@@ -59,7 +59,7 @@ router.get('/alunos', getStudents);
  *       400:
  *         description: Requisição inválida
  */
-router.post('/alunos', alunoSchema, validateSchema, createStudent);
+router.post('/', alunoSchema, validateSchema, createStudent);
 
 /**
  * @swagger
@@ -84,7 +84,7 @@ router.post('/alunos', alunoSchema, validateSchema, createStudent);
  *       404:
  *         description: Aluno não encontrado
  */
-router.get('/alunos/:id', getStudentById);
+router.get('/:id', getStudentById);
 
 /**
  * @swagger
@@ -115,7 +115,7 @@ router.get('/alunos/:id', getStudentById);
  *       404:
  *         description: Aluno não encontrado
  */
-router.put('/alunos/:id', alunoSchema, validateSchema, updateStudent);
+router.put('/:id', alunoSchema, validateSchema, updateStudent);
 
 /**
  * @swagger
@@ -136,7 +136,7 @@ router.put('/alunos/:id', alunoSchema, validateSchema, updateStudent);
  *       404:
  *         description: Aluno não encontrado
  */
-router.delete('/alunos/:id', deleteStudent);
+router.delete('/:id', deleteStudent);
 
 
 /**
