@@ -14,6 +14,7 @@ const verifyToken = (req, res, next) => {
     }
 
     req.id_usuario = decoded.id;
+    req.role = decoded.role;
     next();
   });
 };
