@@ -17,8 +17,8 @@ const Roles = sequelize.define(
       type: DataTypes.BIGINT,
       references: {
         model: 'permissoes',
-        key: 'id_permissao'
-      }
+        key: 'id_permissao',
+      },
     },
   },
   {

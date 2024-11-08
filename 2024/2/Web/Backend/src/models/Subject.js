@@ -29,9 +29,9 @@ const Subject = sequelize.define(
     id_curso: {
       type: DataTypes.BIGINT,
       references: {
-        model: 'curso',
-        key: 'id_curso'
-      }
+        model: 'cursos',
+        key: 'id_curso',
+      },
     },
   },
   {

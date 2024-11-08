@@ -29,7 +29,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Cursos'
  */
-router.get('/',  getCourses);
+router.get('/', getCourses);
 
 /**
  * @swagger

@@ -6,13 +6,9 @@ import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
 import cursoRoutes from './routes/cursoRoutes.js';
 import gradeRoutes from './routes/gradeRoutes.js';
+import subjectRoutes from './routes/subjectRoutes.js';
+import rollCallRoutes from './routes/rollCallRoutes.js';
 import exposedRoutes from './routes/exposedRoutes.js';
-import Students from './models/Alunos.js';
-import Courses from './models/Cursos.js';
-import Permissions from './models/Permissoes.js';
-import Roles from './models/Roles.js';
-import Classes from './models/Turmas.js';
-import Users from './models/Usuarios.js';
 import swaggerDocs from './config/swagger.js';
 
 dotenv.config();
@@ -23,13 +19,14 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 swaggerDocs(app);
 
-app.use('/', alunosRoutes);
-app.use('/', usuariosRoutes);
-app.use('/', turmaRoutes);
-app.use('/', cursoRoutes);
-app.use('/', gradeRoutes);
+app.use('/alunos', alunosRoutes);
+app.use('/usuarios', usuariosRoutes);
+app.use('/turmas', turmaRoutes);
+app.use('/cursos', cursoRoutes);
+app.use('/notas', gradeRoutes);
+app.use('/materias', subjectRoutes);
+app.use('/chamadas', rollCallRoutes);
 app.use('/', exposedRoutes);
-
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
@@ -40,7 +37,7 @@ const run = async () => {
     await sequelize.authenticate();
     console.log('Conexão com o banco de dados estabelecida.');
 
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
     console.log('Sincronização realizada com sucesso');
 
     app.listen(port, () => {

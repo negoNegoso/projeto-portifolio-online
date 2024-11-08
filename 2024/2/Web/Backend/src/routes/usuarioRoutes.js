@@ -1,12 +1,5 @@
 import express from 'express';
-import {
-  getUsers,
-  createUser,
-  getUserById,
-  updateUser,
-  deleteUser,
-  loginUser,
-} from '../controllers/usuarioController.js';
+import { getUsers, createUser, getUserById, updateUser, deleteUser, login } from '../controllers/usuarioController.js';
 import validateSchema from '../middlewares/validateSchema.js';
 import usuarioSchema from '../schemas/usuarioSchema.js';
 
@@ -181,7 +174,7 @@ router.delete('/:id', deleteUser);
  *       500:
  *         description: Erro ao realizar o login
  */
-router.post('/login', loginUser);
+router.post('/login', login);
 
 /**
  * @swagger

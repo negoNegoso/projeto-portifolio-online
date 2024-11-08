@@ -1,12 +1,6 @@
 import express from 'express';
 
-import {
-  createGrade,
-  getAllGrades,
-  getGradeById,
-  updateGrade,
-  deleteGrade,
-} from '../controllers/gradeController.js';
+import { createGrade, getAllGrades, getGradeById, updateGrade, deleteGrade } from '../controllers/gradeController.js';
 import validateSchema from '../middlewares/validateSchema.js';
 import gradeSchema from '../schemas/gradeSchema.js';
 
