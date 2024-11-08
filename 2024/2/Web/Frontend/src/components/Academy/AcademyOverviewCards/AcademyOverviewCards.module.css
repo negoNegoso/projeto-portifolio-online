@@ -1,0 +1,52 @@
+.academyOverviewContainer {
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.academyOverviewEvents {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.academyOverviewCard {
+  background-color: #fbfcff;
+  border-radius: 8px;
+  width: 23%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.academyOverviewCardContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.academyOverviewCardText span {
+  font-size: 14px;
+  color: #677C91;
+}
+
+.academyOverviewCardText h3 {
+  font-size: 24px;
+  color: #243241;
+  margin: 0;
+}
+
+.academyOverviewCardContent img {
+  width: auto;
+  height: 45px;
+  color: #f48225;
+  margin: 5px;
+}

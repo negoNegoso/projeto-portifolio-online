@@ -1,0 +1,48 @@
+.scheduleCard {
+  display: flex;
+  padding: 1rem;
+  position: relative;
+  align-items: stretch;
+}
+
+.scheduleCard:not(:last-child) {
+  border-bottom: 1px solid #b6b6b6;
+}
+
+.scheduleDateTime {
+  text-align: right;
+  color: #666;
+  min-width: 8rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scheduleDateTimeInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.3rem 0;
+}
+
+.scheduleDateTime .scheduleDateTimeInfo img {
+  width: 1.5rem;
+}
+
+.scheduleInfo {
+  flex: 1;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scheduleInfo p {
+  margin: 0.25rem 0;
+}
+
+.subjectColorLine {
+  bottom: 0;
+  width: 0.25em;
+}

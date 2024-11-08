@@ -8,6 +8,8 @@ import RollCall from './pages/Professor/RollCall/RollCall';
 import Students from './pages/Professor/Studants/Students';
 import Grade from './pages/Student/Query/Grade/Grade';
 import Class from './pages/Student/Query/Class/Class';
+import TeacherHome from './pages/Professor/TeacherHome/TeacherHome';
+import AcademyHome from './pages/Academy/AcademyHome/AcademyHome';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/professor/students" element={<Students />} />
         <Route path="/student/query/grade" element={<Grade />} />
         <Route path="/student/query/class" element={<Class />} />
+        <Route path="/professor/query/teacherHome" element={<TeacherHome/>}/>
+        <Route path="/academy/query/academyHome" element={<AcademyHome/>}/>
       </Routes>
     </BrowserRouter>
   );

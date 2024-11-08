@@ -1,0 +1,37 @@
+.teacherNotificationPanel {
+  background-color: #fbfcff;
+  border-radius: 10px;
+  padding: 30px 1rem;
+}
+
+.teacherNotificationPanel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.teacherNotificationPanel li {
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.teacherNotificationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0;
+  margin-bottom: 0.5rem;
+  border-bottom: solid 1px #f66b0e;
+  flex-wrap: wrap;
+}
+
+.teacherNotificationHeaderText {
+  width: 100%;
+  text-align: center;
+}
+
+.teacherNotificationHeaderText h2 {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 0;
+}

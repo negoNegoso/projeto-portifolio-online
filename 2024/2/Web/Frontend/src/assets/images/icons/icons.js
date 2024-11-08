@@ -19,6 +19,15 @@ import arrowRight from './icon-arrow-right.png';
 import students from './students.png';
 import notas from './notas.png';
 import arrowDown from './icon-arrow-down.png';
+import clockSchedule from './icon-clock-schedule.png';
+import calendarSchedule from './icon-calendar-schedule.png';
+import dashboardStudent from './icon-student.png';
+import dashboardDegree from './icon-degree.png';
+import dashboardClass from './icon-class.png';
+import dashboard from './icon-dashboard.png';
+import professorMenu from './icon-professor.png';
+import studentMenu from './icon-student-menu.png';
+
 
 const icons = {
   book: {
@@ -104,6 +113,38 @@ const icons = {
   arrowDown: {
     src: arrowDown,
     alt: 'arrow down icon',
+  },
+  clockSchedule: {
+    src: clockSchedule,
+    alt: 'clock schedule icon',
+  },
+  calendarSchedule: {
+    src: calendarSchedule,
+    alt: 'calendar schedule icon',
+  },
+  dashboardStudent: {
+    src: dashboardStudent,
+    alt: 'dashboard student icon',
+  },
+  dashboardDegree: {
+    src: dashboardDegree,
+    alt: 'dashboard degree icon',
+  },
+  dashboardClass: {
+    src: dashboardClass,
+    alt: 'dashboard class icon',
+  },
+  dashboard: {
+    src: dashboard,
+    alt: 'dashboard icon',
+  },
+  professorMenu: {
+    src: professorMenu,
+    alt: 'professor menu icon',
+  },
+  studentMenu: {
+    src: studentMenu,
+    alt: 'student menu icon',
   },
 };
 
