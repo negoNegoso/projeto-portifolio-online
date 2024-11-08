@@ -6,6 +6,8 @@ import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
 import cursoRoutes from './routes/cursoRoutes.js';
 import gradeRoutes from './routes/gradeRoutes.js';
+import rollcallRoutes from './routes/rollCallRoutes.js'
+import subjectRoutes from './routes/subjectRoutes.js'
 import Students from './models/Alunos.js';
 import Courses from './models/Cursos.js';
 import Permissions from './models/Permissoes.js';
@@ -23,11 +25,13 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 swaggerDocs(app);
 
-app.use('/', alunosRoutes);
-app.use('/', usuariosRoutes);
-app.use('/', turmaRoutes);
-app.use('/', cursoRoutes);
-app.use('/', gradeRoutes);
+app.use('/alunos', alunosRoutes);
+app.use('/cursos', cursoRoutes);
+app.use('/notas', gradeRoutes);
+app.use('/chamadas', rollcallRoutes)
+app.use('/materias', subjectRoutes)
+app.use('/turmas', turmaRoutes);
+app.use('/usuarios', usuariosRoutes);
 
 
 app.get('/', (req, res) => {
