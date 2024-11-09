@@ -1,10 +1,12 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, PhotoImage, Image, font
+
+import subprocess
 from backend.database.db_connection import DBConnection
 from backend.services.app_service   import AppService
 from backend.services.session       import Session
-
+import subprocess
 import usuario
 import trocarSenha
 import login
@@ -30,6 +32,12 @@ def matricula():
         subprocess.Popen(["python", "cadastroMatriculas.py"])  
     except Exception as e:
         messagebox.showerror("Erro", f"Erro ao abrir a tela de matrículas: {str(e)}")
+
+def disciplinas():
+    try:
+        subprocess.Popen(["python", "diciplina.py"])  
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao abrir a tela de cadastro: {str(e)}")
 
 class Aplicacao(tk.Tk):
     def __init__(self):
@@ -116,7 +124,7 @@ class Cadastro(tk.Toplevel):
         self.btn_turmas = Button(self, text="Turmas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=cadastroTurma)
         self.btn_turmas.place(x=0, y=60)
 
-        self.btn_disciplinas = Button(self, text="Disciplinas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.emConstrucao)
+        self.btn_disciplinas = Button(self, text="Disciplinas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=disciplinas)
         self.btn_disciplinas.place(x=0, y=90)
 
         self.btn_disciplinas = Button(self, text="Horários", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.emConstrucao)

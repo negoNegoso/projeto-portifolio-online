@@ -36,7 +36,7 @@ def fetch_disciplinas():
 def create_discipline():
     try:
         subprocess.Popen(["python", "cadastro.py"])  
-        root.destroy()
+        disciplina.destroy()
     except Exception as e:
         messagebox.showerror("Erro", f"Erro ao abrir a tela de cadastro: {str(e)}")
 
@@ -57,25 +57,25 @@ items_per_page = 8
 buttons = []  # Inicializa a lista de botões aqui
 
 def main():
-    global root
+    global disciplina
     global current_page
     global disciplinas
 
     disciplinas = fetch_disciplinas()
     
     # Janela principal
-    root = tk.Tk()
-    root.title("Disciplinas Cadastradas")
-    root.geometry("1280x720")
-    root.configure(bg="white")
+    disciplina = tk.Tk()
+    disciplina.title("Disciplinas Cadastradas")
+    disciplina.geometry("1280x720")
+    disciplina.configure(bg="white")
 
     # Título da janela
-    title = tk.Label(root, text="Disciplinas Cadastradas", font=("Montserrat", 24), bg="white", fg="#004080")
+    title = tk.Label(disciplina, text="Disciplinas Cadastradas", font=("Montserrat", 24), bg="white", fg="#004080")
     title.pack(pady=20)
 
     # Botão de adicionar nova disciplina
     add_btn = tk.Button(
-        root, 
+        disciplina, 
         text="Adicionar +", 
         font=("Montserrat", 16), 
         bg="white", 
@@ -87,7 +87,7 @@ def main():
     )
     add_btn.place(x=1110, y=20)  
     # Canvas para aplicar o gradiente no menu
-    canvas = tk.Canvas(root, width=1280, height=720, highlightthickness=0)
+    canvas = tk.Canvas(disciplina, width=1280, height=720, highlightthickness=0)
     canvas.pack(pady=20)
 
     # Criar o gradiente dentro do canvas
@@ -179,15 +179,15 @@ def main():
             show_disciplines()
 
     # Botões de seta lateral para navegação
-    arrow_left = tk.Button(root, text="⬅️", font=("Montserrat", 18), bg="white", fg="#004080", command=previous_page)
+    arrow_left = tk.Button(disciplina, text="⬅️", font=("Montserrat", 18), bg="white", fg="#004080", command=previous_page)
     arrow_left.place(x=335, y=120)
 
-    arrow_right = tk.Button(root, text="➡️", font=("Montserrat", 18), bg="white", fg="#004080", command=next_page)
+    arrow_right = tk.Button(disciplina, text="➡️", font=("Montserrat", 18), bg="white", fg="#004080", command=next_page)
     arrow_right.place(x=800, y=120)
 
     show_disciplines()  # Chama a função para exibir disciplinas ao iniciar
 
-    root.mainloop()
+    disciplina.mainloop()
 
 # Executar a aplicação
 if __name__ == "__main__":
