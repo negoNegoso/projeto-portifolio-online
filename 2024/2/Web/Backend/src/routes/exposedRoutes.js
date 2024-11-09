@@ -12,7 +12,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /dms-4/consumo:
+ * /dsm-4/consumo:
  *   get:
  *     summary: Retorna todos os alunos
  *     tags: [Consumo]
@@ -26,6 +26,6 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Alunos'
  */
-router.get('/dsm-4/consumo', getStudents);
+router.get('/consumo', getStudents);
 
 export default router;
