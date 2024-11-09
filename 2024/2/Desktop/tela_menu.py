@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox, PhotoImage, Image, font
-
 from backend.database.db_connection import DBConnection
 from backend.services.app_service   import AppService
 from backend.services.session       import Session
@@ -9,6 +8,28 @@ from backend.services.session       import Session
 import usuario
 import trocarSenha
 import login
+import subprocess
+
+# Função para abrir a tela de cadastro de cursos
+def cadastroCurso():
+    try:
+        subprocess.Popen(["python", "cadastroCurso.py"])  
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao abrir a tela de cadastro de cursos: {str(e)}")
+        
+# Função para abrir a tela de cadastro de cursos
+def cadastroTurma():
+    try:
+        subprocess.Popen(["python", "cadastroTurma.py"])  
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao abrir a tela de cadastro de turmas: {str(e)}")
+        
+# Função para abrir a tela de matrícula
+def matricula():
+    try:
+        subprocess.Popen(["python", "cadastroMatriculas.py"])  
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao abrir a tela de matrículas: {str(e)}")
 
 class Aplicacao(tk.Tk):
     def __init__(self):
@@ -57,7 +78,7 @@ class Aplicacao(tk.Tk):
         
         # Botões
         self.custom_font = font.Font(family="Helvetica", size=15, weight="bold")
-        self.btn_matricula = Button(self.label1, text="Matrícula", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=10, height=1, command=self.emConstrucao)
+        self.btn_matricula = Button(self.label1, text="Matrícula", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=10, height=1, command=matricula)
         self.btn_matricula.place(x=170, y=10)
 
         self.btn_notas = Button(self.label1, text="Notas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=8, height=1, command=self.emConstrucao)
@@ -89,10 +110,10 @@ class Cadastro(tk.Toplevel):
         self.btn_usuarios = Button(self, text="Usuarios", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.cadastroUsuario)
         self.btn_usuarios.place(x=0, y=0)
 
-        self.btn_cursos = Button(self, text="Cursos", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.emConstrucao)
+        self.btn_cursos = Button(self, text="Cursos", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=cadastroCurso)
         self.btn_cursos.place(x=0, y=30)
 
-        self.btn_turmas = Button(self, text="Turmas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.emConstrucao)
+        self.btn_turmas = Button(self, text="Turmas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=cadastroTurma)
         self.btn_turmas.place(x=0, y=60)
 
         self.btn_disciplinas = Button(self, text="Disciplinas", font=self.custom_font, bg= "white", borderwidth=0, highlightthickness=0, width=12, height=1, command=self.emConstrucao)

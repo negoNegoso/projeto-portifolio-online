@@ -36,7 +36,7 @@ def next_page():
     print("Próxima página")
 
 def go_back():
-    print("Página anterior")
+    exit()
 
     
 root = tk.Tk()

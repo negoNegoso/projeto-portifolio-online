@@ -14,7 +14,7 @@ def next_page():
 
 # "Voltar"
 def go_back():
-    print("Página anterior")
+    exit()
 
 # Criação da janela principal
 root = tk.Tk()
