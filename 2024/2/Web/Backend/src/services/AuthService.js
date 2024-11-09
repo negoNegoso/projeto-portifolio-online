@@ -21,7 +21,7 @@ const loginUser = async (email, senha) => {
     delete usuario.senha;
 
     const token = jwt.sign({ id: usuario.id_usuario, role: usuario.tipo_usuario }, JWT_SECRET, { expiresIn: '1h' });
-    
+
     return { usuario, token };
   } catch (error) {
     throw new Error(error.message);
