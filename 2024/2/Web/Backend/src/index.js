@@ -1,6 +1,7 @@
 import express from 'express';
 import sequelize from './config/database.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
@@ -18,6 +19,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 swaggerDocs(app);
+
+app.use(cors());
 
 const openRoutes = ['/api-docs/', '/alunos/login', '/usuarios/login', '/dsm-4/consumo'];
 
@@ -44,7 +47,7 @@ const run = async () => {
     await sequelize.authenticate();
     console.log('Conexão com o banco de dados estabelecida.');
 
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: true });
     console.log('Sincronização realizada com sucesso');
 
     app.listen(port, () => {
