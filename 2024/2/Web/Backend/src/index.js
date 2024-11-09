@@ -2,6 +2,7 @@ import express from 'express';
 import sequelize from './config/database.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bcrypt from 'bcrypt';
 import alunosRoutes from './routes/alunoRoutes.js';
 import usuariosRoutes from './routes/usuarioRoutes.js';
 import turmaRoutes from './routes/turmaRoutes.js';
@@ -12,6 +13,7 @@ import rollCallRoutes from './routes/rollCallRoutes.js';
 import exposedRoutes from './routes/exposedRoutes.js';
 import swaggerDocs from './config/swagger.js';
 import { verifyToken } from './middlewares/authMiddleware.js';
+import Users from './models/Usuarios.js';
 
 dotenv.config();
 
@@ -49,6 +51,24 @@ const run = async () => {
 
     await sequelize.sync({ alter: true });
     console.log('Sincronização realizada com sucesso');
+
+    const admin = await Users.findOne({ where: { tipo_usuario: 'Admin' } });
+    if (!admin) {
+      console.log('Nenhum usuário admin encontrado. Criando um novo usuário admin...');
+
+      const hashedPassword = await bcrypt.hash('adminpassword', 10);
+
+      const defaultAdmin = await Users.create({
+        nome_completo: 'Admin da Silva',
+        email: 'admin@praxis.com',
+        senha: hashedPassword,
+        tipo_usuario: 'Admin',
+        status: 'active',
+        caminho_da_foto: '',
+      });
+
+      console.log('Usuário admin criado:', defaultAdmin.nome_completo);
+    }
 
     app.listen(port, () => {
       console.log(`Servidor rodando na porta ${port}`);
