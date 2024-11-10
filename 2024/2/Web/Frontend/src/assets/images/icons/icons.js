@@ -160,6 +160,7 @@ const icons = {
   studentMenu: {
     src: studentMenu,
     alt: 'student menu icon',
+  },
   dashBoard: {
     src: dashBoard,
     alt: 'dashboard',
