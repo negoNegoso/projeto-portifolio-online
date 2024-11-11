@@ -1,0 +1,10 @@
+INSERT INTO grade (name_grade, sigla) VALUES(0, 0),(1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7),(8, 8),(9, 9),(10, 10),(11, 11),(12, 12),(13, 13),(14, 14),(15, 15),(16, 16),(17, 17),(18, 18),(19, 19),(20, 20),(21, 21),(22, 22),(23, 23),(24, 24),(25, 25),(26, 26),(27, 27),(28, 28),(29, 29),(30, 30),(31, 31),(32, 32),(33, 33),(34, 34),(35, 35),(36, 36),(37, 37),(38, 38),(39, 39);
+INSERT INTO classroom (name_of_class, grade_id) VALUES(0, 1),(0, 2),(0, 3),(0, 4),(0, 5),(0, 6),(4, 26),(4, 27),(4, 28),(4, 29),(4, 30),(4, 31),(4, 32);
+INSERT INTO students (name, email, ra, academic_year, classroom_id) VALUES('John Doe','john.doe@example.com','RA1234','2024-2025',1),('Jane Smith','jane.smith@example.com','RA5678','2024-2025',2);
+INSERT INTO notes (student_id,grade_id, subject,atividade_um,atividade_dois,projeto_integrador,avaliacao_integradora,media) VALUES (1,1,0,7.5,8.0,9.0,8.5,9), (2,2,1,8.0,7.5,9.0,9.5,8);
+INSERT INTO teachers (email, password, name, joining_data) VALUES ('professor1@school.com','prof123','Professor A','2018-03-15'),('professor2@school.com','prof456','Professor B','2019-08-20');
+INSERT INTO user(id, email, password) VALUES (1, 'user@example.com', 'userPassword123'),(2, 'seconduser@user.com', '123456789');
+INSERT INTO attendance (attendance_date,attendance_status,subject_enumeration,sigla,student_id) VALUES ('2024-10-28', 0, 1, 1, 1),('2024-10-29', 1, 2, 1, 2);
+INSERT INTO roles (rolename, user) VALUES ('ADMIN', 1), ('USER', 2);
+INSERT INTO sections (name_section, grade_id, status) VALUES (0, 1, 0);
+INSERT INTO teacher_section (teacher_id, section_id) VALUES (1, 1);
