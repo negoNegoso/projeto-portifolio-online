@@ -52,7 +52,7 @@ const run = async () => {
     await sequelize.sync({ alter: true });
     console.log('Sincronização realizada com sucesso');
 
-    const admin = await Users.findOne({ where: { tipo_usuario: 'Admin' } });
+    const admin = await Users.findOne({ where: { tipo_usuario: 'Administrador' } });
     if (!admin) {
       console.log('Nenhum usuário admin encontrado. Criando um novo usuário admin...');
 
@@ -62,7 +62,7 @@ const run = async () => {
         nome_completo: 'Admin da Silva',
         email: 'admin@praxis.com',
         senha: hashedPassword,
-        tipo_usuario: 'Admin',
+        tipo_usuario: 'Administrador',
         status: 'active',
         caminho_da_foto: '',
       });

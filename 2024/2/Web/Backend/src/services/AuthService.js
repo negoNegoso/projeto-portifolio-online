@@ -12,7 +12,9 @@ const loginUser = async (email, senha) => {
       throw new Error('usuário não encontrado.');
     }
 
-    const passwd = await bcrypt.compare(senha, usuario.senha);
+    const hashedPassword = usuario.senha.toString();
+
+    const passwd = await bcrypt.compare(senha, hashedPassword);
     if (!passwd) {
       throw new Error('senha incorreta.');
     }
