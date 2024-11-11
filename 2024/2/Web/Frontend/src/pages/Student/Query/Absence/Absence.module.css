@@ -44,9 +44,11 @@ body {
 .absenceCard {
   width: 95%;
   background-color: white;
-  margin-top: 52px;
-  margin-bottom: 52px;
+  margin-top: 34px;
+  margin-bottom: 34px;
   border-radius: 5px;
+
+  padding: 36px;
 }
 
 .absenceCardTitle {
@@ -59,13 +61,13 @@ body {
   font-size: 32px;
   font-weight: 500;
   color: #2c3e50;
-  margin: 20px 0 20px 40px;
+  margin-bottom: 20px;
 }
 
 .absenceCardTitle hr {
-  background-color: #f2f2f2;
-  width: 200px;
-  height: 4px;
+  background-color: #f66b0e;
+  width: 100%;
+  height: 2px;
   outline: none;
   border: none;
   border-top-right-radius: 10px;
@@ -73,7 +75,8 @@ body {
 }
 
 .absenceCardSubject {
-  margin: 36px 40px;
+  margin-top: 36px;
+  margin-bottom: 42px;
   display: flex;
   align-items: center;
   column-gap: 10px;
@@ -93,23 +96,26 @@ body {
   background-color: #f2f2f2;
   border: none;
   outline: none;
-  border-radius: 10px;
-  width: 300px;
+  border-radius: 6px;
+  width: 140px;
   padding: 5px 10px;
 }
 
 .absenceCardTable {
   width: 100%;
-  padding: 20px 40px 40px 40px;
 }
 
 .absenceCardTableHeader {
   width: 100%;
+  margin-bottom: 32px;
 }
 
 .absenceCardTableBody {
   width: 100%;
-  margin: 20px 0 -2px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .absenceHeader {
@@ -136,20 +142,66 @@ body {
   font-size: 24px;
   color: #233058;
   font-weight: bold;
-  line-height: 4rem;
 }
 
 .absenceBody h2 {
   font-size: 24px;
   color: #3f3f3f;
   font-weight: bold;
-  line-height: 4rem;
 }
 
 .absenceCardTableBody hr {
   border: none;
   outline: none;
-  height: 2px;
+  height: 1px;
   background-color: #677c91;
   border-radius: 10px;
+
+  margin-top: 12px;
+}
+
+.absenceCardFooter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 86px;
+}
+
+.absenceCardFooter span {
+  font-size: 20px;
+  color: #3c5874;
+}
+
+.absenceFooterPages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.absencePageChecked {
+  width: 43px;
+  height: 43px;
+
+  background-color: rgba(122, 165, 209, 0.3);
+
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.absencePage {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

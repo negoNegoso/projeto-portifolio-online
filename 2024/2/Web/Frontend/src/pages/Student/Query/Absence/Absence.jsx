@@ -1,26 +1,60 @@
 import styles from './Absence.module.css';
 import Menu from '../../../../components/Student/Menu/Menu';
 import Panel from '../../../../components/Panel/Panel';
+import icons from '../../../../assets/images/icons/icons';
+import React from 'react';
+import Loading from '../../../../components/Student/Loading/Loading';
+import { getAluno } from '../../../../functions/Alunos';
+import Cookies from 'js-cookie';
 
 const Absence = () => {
-  return (
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [student, setStudent] = React.useState([]);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    const token = Cookies.get('token');
+    const id = Cookies.get('id');
+
+    if (token && id) {
+      const responseFindAlunoById = await getAluno(token, id);
+      console.log(responseFindAlunoById);
+      setStudent(responseFindAlunoById);
+    }
+
+    setIsLoading(false);
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className={styles.absenceContainer}>
-      <Menu studentName={'Ana Clara'} />
+      <Menu studentName={student.nome_completo} />
       <div className={styles.absenceSideContent}>
-        <Panel pageName="Painel do Aluno" section="Consultas/Faltas" color="#677C91" />
+        <Panel pageName="Painel do Aluno" section="Consultas/Faltas" color="#F66B0E" />
         <div className={styles.absenceInfo}>
           <div className={styles.absenceCard}>
             <div className={styles.absenceCardTitle}>
               <p>Faltas</p>
               <hr />
             </div>
+
             <div className={styles.absenceCardSubject}>
               <span>Disciplina: </span>
               <select name="subject">
-                <option value="disciplina">Selecione uma Disciplina</option>
-                <option value="disciplina">disciplina</option>
+                <option>Disciplina</option>
+                <option value="LDW">LDW</option>
+                <option value="PDM">PDM</option>
+                <option value="IEC">IEC</option>
+                <option value="EA">EA</option>
               </select>
             </div>
+
             <div className={styles.absenceCardTable}>
               <div className={styles.absenceCardTableHeader}>
                 <div className={styles.absenceHeader}>
@@ -32,41 +66,78 @@ const Absence = () => {
               </div>
 
               <div className={styles.absenceCardTableBody}>
-                <div className={styles.absenceBody}>
-                  <h2>Nome da matéria</h2>
-                  <h2>Sigla</h2>
-                  <h2>18 aulas</h2>
-                  <h2>2 faltas</h2>
+                <div>
+                  <div className={styles.absenceBody}>
+                    <h2>Nome da matéria</h2>
+                    <h2>Sigla</h2>
+                    <h2>18 aulas</h2>
+                    <h2>2 faltas</h2>
+                  </div>
+
                   <hr />
                 </div>
-                <div className={styles.absenceBody}>
-                  <h2>Nome da matéria</h2>
-                  <h2>Sigla</h2>
-                  <h2>18 aulas</h2>
-                  <h2>2 faltas</h2>
+
+                <div>
+                  <div className={styles.absenceBody}>
+                    <h2>Nome da matéria</h2>
+                    <h2>Sigla</h2>
+                    <h2>18 aulas</h2>
+                    <h2>2 faltas</h2>
+                  </div>
+
                   <hr />
                 </div>
-                <div className={styles.absenceBody}>
-                  <h2>Nome da matéria</h2>
-                  <h2>Sigla</h2>
-                  <h2>18 aulas</h2>
-                  <h2>2 faltas</h2>
+
+                <div>
+                  <div className={styles.absenceBody}>
+                    <h2>Nome da matéria</h2>
+                    <h2>Sigla</h2>
+                    <h2>18 aulas</h2>
+                    <h2>2 faltas</h2>
+                  </div>
+
                   <hr />
                 </div>
-                <div className={styles.absenceBody}>
-                  <h2>Nome da matéria</h2>
-                  <h2>Sigla</h2>
-                  <h2>18 aulas</h2>
-                  <h2>2 faltas</h2>
+
+                <div>
+                  <div className={styles.absenceBody}>
+                    <h2>Nome da matéria</h2>
+                    <h2>Sigla</h2>
+                    <h2>18 aulas</h2>
+                    <h2>2 faltas</h2>
+                  </div>
+
                   <hr />
                 </div>
-                <div className={styles.absenceBody}>
-                  <h2>Nome da matéria</h2>
-                  <h2>Sigla</h2>
-                  <h2>18 aulas</h2>
-                  <h2>2 faltas</h2>
+
+                <div>
+                  <div className={styles.absenceBody}>
+                    <h2>Nome da matéria</h2>
+                    <h2>Sigla</h2>
+                    <h2>18 aulas</h2>
+                    <h2>2 faltas</h2>
+                  </div>
+
                   <hr />
                 </div>
+              </div>
+            </div>
+
+            <div className={styles.absenceCardFooter}>
+              <span>
+                Total de <b>7</b> registros
+              </span>
+
+              <div className={styles.absenceFooterPages}>
+                <div className={styles.absencePageChecked}>
+                  <span>1</span>
+                </div>
+
+                <div className={styles.absencePage}>
+                  <span>2</span>
+                </div>
+
+                <img src={icons.arrowRightDark.src} alt={icons.arrowRightDark.src} />
               </div>
             </div>
           </div>

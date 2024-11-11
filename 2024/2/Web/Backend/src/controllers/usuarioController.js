@@ -1,8 +1,7 @@
 import Users from '../models/Usuarios.js';
 import bcrypt from 'bcrypt';
-import login from '../services/authService.js';
+import { loginUser } from '../services/AuthService.js';
 import { response, handleError } from '../Utils/Utils.js';
-
 
 const getUsers = async (req, res) => {
   try {
@@ -97,15 +96,15 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+const login = async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const { user, token } = await login(email, senha);
-    return response(res, { user, token });
+    const { usuario, token } = await loginUser(email, senha);
+    return response(res, { user: usuario, token });
   } catch (error) {
     return handleError(res, error, 401);
   }
 };
 
-export { getUsers, createUser, getUserById, updateUser, deleteUser, loginUser };
+export { getUsers, createUser, getUserById, updateUser, deleteUser, login };

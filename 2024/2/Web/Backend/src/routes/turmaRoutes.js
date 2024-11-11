@@ -1,5 +1,7 @@
 import express from 'express';
 import { getTurmas, createTurma, getTurmaById, updateTurma, deleteTurma } from '../controllers/turmaController.js';
+import validateSchema from '../middlewares/validateSchema.js';
+import turmaSchema from '../schemas/turmaSchema.js';
 
 const router = express.Router();
 
@@ -9,7 +11,6 @@ const router = express.Router();
  *   name: Turmas
  *   description: Rota para gerenciamento de turmas
  */
-
 
 /**
  * @swagger
@@ -23,12 +24,11 @@ const router = express.Router();
  *       500:
  *         description: Erro ao obter as turmas
  */
-router.get('/turmas', getTurmas);
-
+router.get('/', getTurmas);
 
 /**
  * @swagger
- * /create-turma:
+ * /turmas:
  *   post:
  *     summary: Cria uma nova turma
  *     tags: [Turmas]
@@ -59,11 +59,11 @@ router.get('/turmas', getTurmas);
  *       500:
  *         description: Erro ao criar a turma
  */
-router.post('/create-turma', createTurma);
+router.post('/', turmaSchema, validateSchema, createTurma);
 
 /**
  * @swagger
- * /get-turma/{id}:
+ * /turmas/{id}:
  *   get:
  *     summary: Obtém uma turma pelo ID
  *     tags: [Turmas]
@@ -82,11 +82,11 @@ router.post('/create-turma', createTurma);
  *       500:
  *         description: Erro ao buscar a turma
  */
-router.get('/get-turma/:id', getTurmaById);
+router.get('/:id', getTurmaById);
 
 /**
  * @swagger
- * /update-turma/{id}:
+ * /turmas/{id}:
  *   put:
  *     summary: Atualiza uma turma pelo ID
  *     tags: [Turmas]
@@ -126,11 +126,11 @@ router.get('/get-turma/:id', getTurmaById);
  *       500:
  *         description: Erro ao atualizar a turma
  */
-router.put('/update-turma/:id', updateTurma);
+router.put('/:id', turmaSchema, validateSchema, updateTurma);
 
 /**
  * @swagger
- * /delete-turma/{id}:
+ * /turmas/{id}:
  *   delete:
  *     summary: Exclui uma turma pelo ID
  *     tags: [Turmas]
@@ -149,7 +149,7 @@ router.put('/update-turma/:id', updateTurma);
  *       500:
  *         description: Erro ao excluir a turma
  */
-router.delete('/delete-turma/:id', deleteTurma);
+router.delete('/:id', deleteTurma);
 
 /**
  * @swagger

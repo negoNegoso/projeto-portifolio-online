@@ -11,7 +11,9 @@ const Menu = ({ studentName }) => {
       </div>
       <div className={styles.menuUserInfo}>
         <div id={styles.userImageMenu}></div>
-        <p>{studentName}</p>
+        <Link id={styles.title} to={'/student/home'}>
+          <p>{studentName}</p>
+        </Link>
       </div>
       <div className={styles.menuConsult}>
         <div className={styles.consultTitle}>
@@ -29,15 +31,21 @@ const Menu = ({ studentName }) => {
           </div>
           <div className={styles.consultItems}>
             <img src={icons.star.src} alt={icons.star.alt} />
-            <p>Notas</p>
+            <Link id={styles.items} to={'/student/query/grade'}>
+              <p>Notas</p>
+            </Link>
           </div>
           <div className={styles.consultItems}>
             <img src={icons.clock.src} alt={icons.clock.alt} />
-            <p>Aulas</p>
+            <Link id={styles.items} to={'/student/query/class'}>
+              <p>Aulas</p>
+            </Link>
           </div>
           <div className={styles.consultItems}>
             <img src={icons.history.src} alt={icons.history.alt} />
-            <p>Histórico</p>
+            <Link id={styles.items} to={'/student/query/schoolReport'}>
+              <p>Histórico</p>
+            </Link>
           </div>
         </div>
       </div>

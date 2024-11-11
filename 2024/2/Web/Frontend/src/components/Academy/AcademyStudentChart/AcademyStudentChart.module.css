@@ -1,0 +1,49 @@
+.chartStudentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 27%;
+  padding: 20px;
+  background-color: #fbfcff;
+  border-radius: 8px;
+}
+
+.chartStudentTitle {
+  color: #243241;
+}
+
+.legendStudentContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-inline: 5px;
+}
+
+.legendStudentItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.legendStudentItemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.legendStudentColor {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.legendStudentValue {
+  font-size: 20px;
+  color: #243241;
+  font-weight: bold;
+}
+
+.legendStudentLabel {
+  font-size: 13px;
+  color: #677c91;
+}
+

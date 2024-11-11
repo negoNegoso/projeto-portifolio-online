@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Roles = sequelize.define(
-  'Roles',
+  'roles',
   {
     id_role: {
       type: DataTypes.BIGINT,
@@ -15,6 +15,10 @@ const Roles = sequelize.define(
     },
     id_permissao: {
       type: DataTypes.BIGINT,
+      references: {
+        model: 'permissoes',
+        key: 'id_permissao',
+      },
     },
   },
   {

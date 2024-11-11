@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Grade = sequelize.define(
-  'Nota',
+  'notas',
   {
     id_nota: {
       type: DataTypes.BIGINT,
@@ -12,10 +12,18 @@ const Grade = sequelize.define(
     id_materia: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      references: {
+        model: 'materias',
+        key: 'id_materia',
+      },
     },
     id_aluno: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      references: {
+        model: 'alunos',
+        key: 'id_aluno',
+      },
     },
     nota: {
       type: DataTypes.FLOAT,

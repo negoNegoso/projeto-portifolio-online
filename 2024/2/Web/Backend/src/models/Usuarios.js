@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Users = sequelize.define(
-  'Usuarios',
+  'usuarios',
   {
     id_usuario: {
       type: DataTypes.BIGINT,
@@ -35,7 +35,7 @@ const Users = sequelize.define(
       },
     },
     senha: {
-      type: DataTypes.TEXT,
+      type: DataTypes.BLOB,
       allowNull: false,
       validate: {
         notEmpty: {

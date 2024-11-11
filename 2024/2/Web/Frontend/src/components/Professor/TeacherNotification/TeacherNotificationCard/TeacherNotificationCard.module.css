@@ -1,0 +1,31 @@
+.notificationCard {
+  border-bottom: 1px solid #677c91;
+  padding: 10px;
+}
+
+.notificationCardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.notificationCardTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.notificationCardTitle h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.notificationAssignment {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.notificationDueDate {
+  margin: 0.313rem 0;
+  font-size: 0.875rem;
+}

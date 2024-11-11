@@ -141,6 +141,26 @@ BEGIN
     END IF;
 END $$;
 
+-- Criar a tabela "Chamadas"
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_class WHERE relname = 'chamadas') THEN
+        CREATE TABLE Chamadas (
+            id_chamada BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            id_aluno BIGINT REFERENCES Alunos(id_aluno) ON DELETE CASCADE,
+            id_turma BIGINT REFERENCES Turmas(id_turma) ON DELETE SET NULL,
+            id_materia BIGINT REFERENCES Materias(id_materia) ON DELETE CASCADE,
+            data_chamada DATE,
+            presenca BOOLEAN,
+            justificativa TEXT,
+            horario_chamada TIME,
+            observacoes TEXT,
+            updatedAt DATE,
+            createdAt DATE
+        );
+    END IF;
+END $$;
+
 CREATE ROLE user_reading_create
 WITH LOGIN
 PASSWORD 'userreadingcreate';
@@ -366,6 +386,17 @@ VALUES
 (13, 3);
 
 
+CREATE USER zbx_monitor WITH PASSWORD 'zabbix' INHERIT;
+GRANT pg_monitor TO zbx_monitor;
 
+CREATE ROLE user_admin WITH LOGIN PASSWORD 'useradmin' SUPERUSER CREATEDB CREATEROLE INHERIT;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO user_admin;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO user_admin;
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO user_admin;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO user_admin;
 
 
