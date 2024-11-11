@@ -80,8 +80,9 @@ body {
   margin-bottom: 16px;
 }
 
-.cardTitle p {
+#title p {
   font-weight: 500;
+  color: black;
 }
 
 .cardContent {

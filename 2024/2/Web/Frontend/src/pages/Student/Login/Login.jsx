@@ -1,10 +1,14 @@
-import styles from './Login.module.css'; // Atualizado para usar CSS Modules
-import useAuthStore from '../../../store/useAuthStore';
+import React from 'react';
+import styles from './Login.module.css';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import logos from '../../../assets/images/logos/logos';
 import icons from '../../../assets/images/icons/icons';
+import { loginAluno } from '../../../functions/Alunos';
+import { loginUsuario } from '../../../functions/Usuarios';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const schema = z.object({
   email: z.string().email('Invalid Email').min(1, 'Email is required'),
@@ -12,8 +16,12 @@ const schema = z.object({
 });
 
 const Login = () => {
-  const login = useAuthStore((state) => state.login);
-  const error = useAuthStore((state) => state.error);
+  const navigate = useNavigate();
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState();
+
+  const [isValueChecked, setIsValueChecked] = React.useState('');
 
   const {
     register,
@@ -23,8 +31,72 @@ const Login = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    login(data.email, data.password);
+  const studentLogin = async () => {
+    const data = {
+      email: email,
+      senha: password,
+    };
+
+    const responseLogin = await loginAluno(data);
+
+    if (!responseLogin.token) {
+      setError('Falha ao realizar o login. Email ou senha incorretos.');
+      return;
+    }
+
+    Cookies.set('token', responseLogin.token);
+    Cookies.set('id', responseLogin.user.id_aluno);
+    Cookies.set('name', responseLogin.user.nome_completo);
+    Cookies.set('role', 'Aluno');
+
+    const studentName = decodeURIComponent(Cookies.get('name'));
+    console.log(`Usuario ${studentName} logado com sucesso (${Cookies.get('role')}).`);
+
+    navigate('/student/home');
+  };
+
+  const employeeLogin = async () => {
+    const data = {
+      email: email,
+      senha: password,
+    };
+
+    const responseLogin = await loginUsuario(data);
+
+    if (!responseLogin.token) {
+      setError('Falha ao realizar o login. Email ou senha incorretos.');
+      return;
+    }
+
+    Cookies.set('token', responseLogin.token);
+    Cookies.set('id', responseLogin.user.id_usuario);
+    Cookies.set('name', responseLogin.user.nome_completo);
+    Cookies.set('role', responseLogin.user.tipo_usuario);
+
+    const studentName = decodeURIComponent(Cookies.get('name'));
+    const role = Cookies.get('role');
+
+    console.log(`Usuario ${studentName} logado com sucesso (${role}).`);
+
+    if (role == 'Professor') {
+      navigate('/professor/query/teacherHome');
+    } else {
+      navigate('/academy/query/academyHome');
+    }
+  };
+
+  const login = async () => {
+    switch (isValueChecked) {
+      case 'student':
+        studentLogin();
+        break;
+      case 'employee':
+        employeeLogin();
+        break;
+      default:
+        setError('Escolha uma opção de login.');
+        break;
+    }
   };
 
   return (
@@ -39,15 +111,27 @@ const Login = () => {
           </div>
           <div className={styles.loginOption}>
             <div className={styles.option}>
-              <input type="radio" name="option" value="student" checked />
+              <input
+                type="radio"
+                name="option"
+                value="student"
+                onChange={(e) => setIsValueChecked(e.target.value)}
+                checked={isValueChecked == 'student'}
+              />
               <span>Aluno</span>
             </div>
             <div className={styles.option}>
-              <input type="radio" name="option" value="employee" />
+              <input
+                type="radio"
+                name="option"
+                value="employee"
+                onChange={(e) => setIsValueChecked(e.target.value)}
+                checked={isValueChecked == 'employee'}
+              />
               <span>Funcionário</span>
             </div>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(login)}>
             <div className={styles.inputGroup}>
               {(errors.email || errors.password) && (
                 <div
@@ -74,6 +158,7 @@ const Login = () => {
               <input
                 type="text"
                 {...register('email')}
+                onChange={(event) => setEmail(event.target.value)}
                 className={errors.email ? styles.inputError : styles.inputFormStudent}
                 placeholder="E-mail Institucional"
                 required
@@ -84,6 +169,7 @@ const Login = () => {
               <input
                 type="password"
                 {...register('password')}
+                onChange={(event) => setPassword(event.target.value)}
                 className={errors.password ? styles.inputError : styles.inputFormStudent}
                 placeholder="Senha"
                 required
