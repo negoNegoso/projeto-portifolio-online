@@ -1,6 +1,7 @@
 import styles from './TeacherMenu.module.css';
 import icons from '../../../assets/images/icons/icons';
 import logos from '../../../assets/images/logos/logos';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ studentName }) => {
   return (
@@ -45,7 +46,9 @@ const Menu = ({ studentName }) => {
       <div className={styles.menuActions}>
         <div className={styles.menuActionsImg}>
           <img src={icons.gear.src} alt={icons.gear.alt} />
-          <p>Configurações</p>
+          <Link id={styles.items} to={'/professor/settings'}>
+            <p>Configurações</p>
+          </Link>
         </div>
         <div className={styles.menuActionsImg}>
           <img src={icons.quit.src} alt={icons.quit.alt} />
