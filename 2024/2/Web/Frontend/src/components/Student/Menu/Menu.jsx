@@ -61,7 +61,9 @@ const Menu = ({ studentName }) => {
       <div className={styles.menuActions}>
         <div className={styles.menuActionsImg}>
           <img src={icons.gear.src} alt={icons.gear.alt} />
-          <p>Configurações</p>
+          <Link id={styles.items} to={'/student/settings'}>
+            <p>Configurações</p>
+          </Link>
         </div>
         <div className={styles.menuActionsImg}>
           <img src={icons.quit.src} alt={icons.quit.alt} />
